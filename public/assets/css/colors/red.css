@@ -1,0 +1,475 @@
+.tabs .tab a.active{
+	background:#8d130b;
+}
+nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:hover,
+.side .widget ul.link li a:hover,
+.side .widget ul.link li a:focus,
+.check-list li:before,
+ul.cart-list > li > h6 > a,
+.attr-nav > ul > li > a:hover,
+.attr-nav > ul > li > a:focus,
+nav.navbar-sidebar ul.nav li.dropdown.on > a,
+nav.navbar-sidebar .dropdown .megamenu-content .col-menu.on .title,
+nav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu li a:hover,
+nav.navbar ul.nav li.dropdown.on > a,
+nav.navbar.navbar-inverse ul.nav li.dropdown.on > a,
+nav.navbar-sidebar ul.nav li.dropdown.on ul.dropdown-menu li.dropdown.on > a,
+nav.navbar .dropdown .megamenu-content .col-menu.on .title,
+nav.navbar ul.nav > li > a:hover,
+nav.navbar ul.nav > li.active > a:hover,
+nav.navbar ul.nav li.active > a,
+nav.navbar li.dropdown ul.dropdown-menu > li a:hover {
+    color: #F44336;
+}
+nav.navbar.navbar-transparent ul.nav > li > a:hover,
+nav.navbar.no-background ul.nav > li > a:hover,
+nav.navbar ul.nav li.scroll.active > a,
+nav.navbar.navbar-dark ul.nav li.dropdown ul.dropdown-menu > li > a:hover,
+nav.navbar ul.nav li.dropdown.on > a,
+nav.navbar-dark ul.nav li.dropdown.on > a {
+    color: #F44336 !important;
+}
+@media(max-width:920px) {
+    nav.navbar .dropdown .megamenu-content .col-menu ul > li > a:hover, nav.navbar.navbar-dark .dropdown .megamenu-content .col-menu .title:hover {
+        color: #F44336 !important;
+    }
+}
+ul.cart-list > li.total > .btn {
+    border-color: #F44336;
+}
+nav.navbar li.dropdown ul.dropdown-menu {
+    border-top-color: #F44336 !important;
+}
+ul.cart-list > li.total > .btn,
+.attr-nav > ul > li > a span.badge,
+nav.navbar .share ul > li > a:hover,
+nav.navbar .share ul > li > a:focus {
+    background-color: #F44336;
+}
+.teal.lighten-1 {
+    background-color: #F44336 !important
+}
+
+.teal-text.text-lighten-1 {
+    color: #F44336 !important
+}
+.collection .collection-item.active {
+    background-color: #F44336;
+}
+.collection a.collection-item {
+    color: #F44336
+}
+.secondary-content {
+    color: #F44336
+}
+.progress .determinate {
+    background-color: #F44336;
+}
+.progress .indeterminate {
+    background-color: #F44336
+}
+span.badge.new {
+    background-color: #F44336;
+}
+.btn,
+.btn-large {
+    background-color: #F44336;
+}
+.btn:hover,
+.btn-large:hover {
+    background-color: #F44336
+}
+.btn-floating {
+    background-color: #F44336;
+}
+
+.btn-floating:hover {
+    background-color: #F44336
+}
+.fixed-action-btn .fab-backdrop {
+    background-color: #F44336;
+}
+.dropdown-content li>a,
+.dropdown-content li>span {
+    color: #F44336;
+}
+.chips.focus {
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 1px 0 0 #F44336
+}
+.chips .chip.selected {
+    background-color: #F44336;
+}
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 1px 0 0 #F44336
+}
+
+input:not([type]):focus:not([readonly])+label,
+input[type=text]:focus:not([readonly])+label,
+input[type=password]:focus:not([readonly])+label,
+input[type=email]:focus:not([readonly])+label,
+input[type=url]:focus:not([readonly])+label,
+input[type=time]:focus:not([readonly])+label,
+input[type=date]:focus:not([readonly])+label,
+input[type=datetime]:focus:not([readonly])+label,
+input[type=datetime-local]:focus:not([readonly])+label,
+input[type=tel]:focus:not([readonly])+label,
+input[type=number]:focus:not([readonly])+label,
+input[type=search]:focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #F44336
+}
+.input-field .prefix.active {
+    color: #F44336
+}
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:before,
+[type="radio"].with-gap:checked+label:after {
+    border: 2px solid #F44336
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"].with-gap:checked+label:after {
+    background-color: #F44336
+}
+[type="checkbox"]:checked+label:before {
+    border-right: 2px solid #F44336;
+    border-bottom: 2px solid #F44336;
+}
+[type="checkbox"]:indeterminate+label:before {
+    border-right: 2px solid #F44336;
+}
+[type="checkbox"].filled-in:checked+label:after {
+    border: 2px solid #F44336;
+    background-color: #F44336;
+}
+[type="checkbox"].filled-in.tabbed:checked:focus+label:after {
+    background-color: #F44336;
+    border-color: #F44336
+}
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #F44336;
+}
+input[type=range]+.thumb {
+    background-color: #F44336;
+}
+input[type=range]+.thumb .value {
+    color: #F44336;
+}
+input[type=range]::-webkit-slider-thumb {
+    background-color: #F44336;
+
+}
+input[type=range]::-moz-range-thumb {
+    background: #F44336;
+}
+
+input[type=range]::-ms-thumb {
+    background: #F44336
+}
+.side-nav li>a.btn:hover,
+.side-nav li>a.btn-large:hover,
+.side-nav li>a.btn-large:hover {
+    background-color: #F44336
+}
+
+.side-nav li>a.btn-floating:hover {
+    background-color: #F44336
+}
+.spinner-layer {
+    border-color: #F44336
+}
+.picker__date-display {
+    background-color: #F44336;
+}
+.picker__day.picker__day--today {
+    color: #F44336
+}
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
+    background-color: #F44336;
+}
+.picker__close,
+.picker__today {
+    color: #F44336
+}
+@media only screen and (max-width: 767px) {
+	    #header .navbar-inverse .navbar-toggle,
+    #header .navbar-inverse .navbar-toggle:focus {
+        border-color: #F44336;
+    }
+    .navbar-header .navbar-toggle .icon-bar {
+        background-color: #F44336;
+    }
+    #header .navbar-inverse .navbar-toggle:hover {
+        background: #F44336;
+    }
+}
+
+/*  Main css */
+a {
+color: #F44336;
+}
+.tabs .indicator {
+	background-color: #F44336;
+}
+
+.primary-color {
+	color: #F44336
+}
+
+.primary-bg {
+	background: #F44336;
+}
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #F44336;
+	box-shadow: 0 1px 0 0 #F44336;
+}
+h3.ilm-subtitle:before {
+	background-color: #F44336;
+}
+.divider-dashed {
+	background-color: #F44336;
+}
+.divider-circle {
+	border: 1px solid #F44336;
+}
+.divider-circle:before {
+	background-color: #F44336;
+}
+.divider-circle:after {
+	background-color: #F44336;
+}
+.divider-traingle {
+	border: 1px solid #F44336;
+}
+.divider-traingle:before {
+	background-color: #F44336;
+}
+.divider-traingle:after {
+	background: #F44336;
+}
+.lines {
+	border-top: 2px solid #F44336;
+}
+
+.lines:before,
+.lines:after {
+	border-top: 2px solid #F44336;
+}
+.btn:focus,
+.btn-large:focus,
+.btn-floating:focus {
+	background-color: #F44336;
+}
+.btn-transparent:hover {
+	background-color: #F44336;
+}
+.search i {
+	color: #F44336;
+}
+#header .navbar-inverse .navbar-nav li.active>a,
+#header .navbar-inverse .navbar-nav li.active>a:focus,
+#header .navbar-nav.navbar-right li>a:hover,
+.navbar-inverse .navbar-nav>.open>a {
+	color: #F44336;
+}
+
+#header .navbar-inverse .navbar-nav li a:hover {
+	color: #F44336;
+}
+#header .navbar-nav li ul.sub-menu li .active {
+	background-color: #F44336;
+}
+#header .navbar-nav li ul.sub-menu li a:hover,
+#header .navbar-nav li ul.sub-menu li a:focus {
+	background-color: #F44336;
+}
+.slider .indicators .indicator-item:after {
+	border: 2px solid #F44336;
+}
+.slider .indicators .indicator-item.active {
+	background-color: #F44336;
+}
+.slider-text h1 span {
+	color: #F44336;
+}
+.slider-text li a {
+	border: 1px solid #F44336;
+}
+.slider-text li a:hover {
+	background-color: #F44336;
+	border-color: #F44336;
+}
+.featured-box .icon {
+	color: #F44336;
+}
+.featured-box:hover {
+	background-color: #F44336;
+}
+.social-icon li a:hover {
+	background-color: #F44336;
+	border-color: #F44336;
+}
+.pagination li:first-child a,
+.pagination li:last-child a {
+	border: 1px solid #F44336;
+}
+.pagination li a:hover,
+.pagination .active a,
+.pagination a:active,
+.pagination .active a:hover,
+.pagination .active a:focus,
+.pagination a:focus {
+	border-color: #F44336;
+	color: #F44336;
+}
+.portfolio-pagination .pagination li.active a {
+	background: #F44336;
+}
+.single-hr-p-content ul li a:hover {
+	background-color: #F44336;
+}
+.owl-theme .owl-nav [class*='owl-'] {
+	background-color: #F44336;
+}
+.owl-theme .owl-nav [class*='owl-']:hover {
+	background-color: #F44336;
+}
+.owl-theme .owl-dots .owl-dot span:before {
+	border: 2px solid #F44336;
+}
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot span:hover {
+	background-color: #F44336;
+}
+.features-item .icon-outer {
+	color: #F44336;
+}
+.features-item:hover .icon-outer {
+	background-color: #F44336;
+}
+.apt-table-wrapper.apt-featured-table header {
+	background-color: #F44336;
+}
+.apt-bsd-tooltip:before {
+	color: #F44336;
+}
+.apt-bsd-tooltip p {
+	color: #F44336;
+}
+.apt-bsd-tooltip p:before {
+	border-bottom-color: #F44336;
+}
+.apt-pricing-button-2 a {
+	background-color: #F44336;
+}
+.single-fact .icon {
+	color: #F44336;
+}
+.single-fact:hover .icon {
+	background-color: #F44336;
+}
+.wrap-article:hover a .title {
+	color: #F44336;
+}
+#timeline:before {
+	background-color: #F44336;
+}
+#timeline .timeline-item .timeline-content .title {
+	background-color: #F44336;
+}
+#timeline .timeline-item .timeline-content:before {
+	border-left: 7px solid #F44336;
+}
+#timeline .timeline-item .timeline-content.right:before {
+	border-right: 7px solid #F44336;
+}
+@media screen and (max-width: 768px) {
+		#timeline .timeline-item .timeline-content:before,
+	#timeline .timeline-item .timeline-content.right:before {
+		border-right: 7px solid #F44336;
+	}
+}
+#timeline.edu-ex-timeline .timeline-item .timeline-content:before,
+#timeline.edu-ex-timeline .timeline-item .timeline-content.right:before {
+	border-right: 7px solid #F44336;
+}
+.item-period {
+	color: #F44336;
+}
+.contact-form-box textarea:focus {
+	border-bottom: 2px solid #F44336;
+}
+.social-bookmark a {
+	background-color: #F44336;
+}
+.social-bookmark a:hover {
+	color: #F44336;
+}
+.tabs {
+	background-color: #F44336;
+}
+.panel-heading {
+	background-color: #F44336;
+}
+.progress-bars .progress .progress-bar {
+	background-color: #F44336;
+
+}
+blockquote {
+	border-color: #F44336;
+}
+.comment-navigation {
+	background: #F44336;
+}
+.post-comment-form-group textarea:focus {
+	border-color: #F44336;
+}
+.sidebar .widget li a:hover {
+	color: #F44336
+}
+.video-icon button {
+	color: #F44336;
+}
+.left-icon-box .icon {
+	color: #F44336;
+}
+.left-icon-box:hover .icon {
+	background-color: #F44336;
+}
+.error_content_inner h1 {
+	color: #F44336;
+}
+.footer-col li:hover:before {
+	color: #F44336;
+}
+.footer-col a:hover {
+	color: #F44336
+}
