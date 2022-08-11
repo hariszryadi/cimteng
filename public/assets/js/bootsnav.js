@@ -167,8 +167,10 @@
                     var scrollTop = $(window).scrollTop();
                     if(scrollTop >34){
                         $(".navbar-fixed").removeClass("navbar-transparent");
+                        $(".navbar-fixed").removeAttr("style");
                     }else {
                         $(".navbar-fixed").addClass("navbar-transparent");
+                        $(".navbar-fixed").css("background-color", "rgba(239, 230, 230, 0.5)");
                     }
                 });
             }

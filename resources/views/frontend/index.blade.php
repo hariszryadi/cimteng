@@ -243,74 +243,27 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="section-title text-center mb50">
-					<h2>WHAT WE DO?</h2>
+					<h2>VIDEO</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna. </p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-idea"></i>
+		<div class="row scrollmenu">
+			@foreach ($videos as $video)
+				@if ($video->source == '1')
+					<div class="box-video">
+						<video width="360" height="180" controls="controls">
+							<source src="{{ asset('storage/'.$video->video) }}" type="video/mp4">
+						</video>
 					</div>
-					<h3>Strategic planing</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-growth"></i>
+				@else
+					<div class="box-video">
+						<iframe width="360" height="180" src="http://www.youtube.com/embed/{{ $video->video }}" frameborder="0" allowfullscreen></iframe>
 					</div>
-					<h3>Online Marketing</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-coins"></i>
-					</div>
-					<h3>Business planing</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-smart-phone"></i>
-					</div>
-					<h3>App development</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-camera-alt"></i>
-					</div>
-					<h3>Photography</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
-			<div class="col-md-4 col-sm-6">
-				<div class="featured-box text-center white-bg">
-					<div class="icon">
-						<i class="icofont icofont-laptop"></i>
-					</div>
-					<h3>Web design</h3>
-					<p>Parish so enable innate in formed missed. Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution.</p>
-				</div>
-			</div>
-			<!-- Single featured box end -->
+				@endif
+			@endforeach
 		</div>
 	</div>
 </section>
@@ -707,7 +660,7 @@
 
 <!-- Call to action start -->
 
-<section class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('assets/img/cta-bg.jpg') }})">
+<section class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -733,7 +686,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="section-title text-center mb70">
-					<h2>TESTIMONIALS</h2>
+					<h2>BERITA</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
@@ -743,120 +696,39 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="owl-carousel owl-theme feedback-two-col slide-feedback">
-					<div class="feedback-content white-bg clearfix">
-						<div class="q-sign top">“</div>
-						<blockquote class="clearfix">
-							<p class="text-left">
-								Deployment ownership non-disclosure agreement vesting period crowdfunding success influencer partnership equity series A financing network effects user experience crowdsource. Burn rate stock bootstrapping direct mailing release client traction creative facebook monetization crowdfunding rockstar.
-							</p>
+					@foreach ($news as $item)
+						<div class="feedback-content white-bg clearfix">
+							<div class="q-sign top">“</div>
+							<blockquote class="clearfix">
+								<p class="text-left">
+									{{ $item->title }}
+								</p>
 
-						<div class="author-info pull-left text-left">
-							<div class="client-image">
-								<img src="{{ asset('assets/img/avater-1.jpg') }}" class="img-responsive" alt="">
-							</div>
+							<div class="author-info pull-left text-left">
+								<div class="client-image">
+									<img src="{{ asset('storage/'. $item->image ) }}" class="img-responsive img-news" alt="">
+								</div>
 
-							<div class="client-details">
-								<h6 class="dark-text">Jesica J.</h6>
-								<div class="extra-small-text">
-									Founder, <a href="#">ColorLab</a>
+								<div class="client-details">
+									<h6 class="dark-text">Jesica J.</h6>
+									<div class="extra-small-text">
+										@php
+											$date = $item->created_at;
+											$date->settings(['formatFunction' => 'translatedFormat']);
+										@endphp
+										{{ $date->format('l, j F Y ') }}, <a href="#">Baca selengkapnya</a>
+									</div>
+
 								</div>
 
 							</div>
+							</blockquote>
 
-						</div>
-						</blockquote>
-
-						<div class="q-sign bottom">
-							”
-						</div>
-					</div>
-
-					<div class="feedback-content white-bg clearfix">
-						<div class="q-sign top">“</div>
-
-						<blockquote class="clearfix">
-							<p class="text-left">
-								Deployment ownership non-disclosure agreement vesting period crowdfunding success influencer partnership equity series A financing network effects user experience crowdsource. Burn rate stock bootstrapping direct mailing release client traction creative facebook monetization crowdfunding rockstar.
-							</p>
-
-						<div class="author-info pull-left text-left">
-							<div class="client-image">
-								<img src="{{ asset('assets/img/avater-2.jpg') }}" class="img-responsive" alt="">
+							<div class="q-sign bottom">
+								”
 							</div>
-
-							<div class="client-details">
-								<h6 class="dark-text">Maria J.</h6>
-								<div class="extra-small-text">
-									Founder, <a href="#">Sandy</a>
-								</div>
-
-							</div>
-
-						</div>
-						</blockquote>
-
-						<div class="q-sign bottom">
-							”
-						</div>
-					</div>
-
-					<div class="feedback-content white-bg clearfix">
-						<div class="q-sign top">“</div>
-
-						<blockquote class="clearfix">
-							<p class="text-left">
-								Deployment ownership non-disclosure agreement vesting period crowdfunding success influencer partnership equity series A financing network effects user experience crowdsource. Burn rate stock bootstrapping direct mailing release client traction creative facebook monetization crowdfunding rockstar.
-							</p>
-
-						<div class="author-info pull-left text-left">
-							<div class="client-image">
-								<img src="{{ asset('assets/img/avater-3.jpg') }}" class="img-responsive" alt="">
-							</div>
-
-							<div class="client-details">
-								<h6 class="dark-text">John Deo</h6>
-								<div class="extra-small-text">
-									Founder, <a href="#">TheCompany</a>
-								</div>
-
-							</div>
-
-						</div>
-						</blockquote>
-
-						<div class="q-sign bottom">
-							”
-						</div>
-					</div>
-
-					<div class="feedback-content white-bg clearfix">
-						<div class="q-sign top">“</div>
-
-						<blockquote class="clearfix">
-							<p class="text-left">
-								Deployment ownership non-disclosure agreement vesting period crowdfunding success influencer partnership equity series A financing network effects user experience crowdsource. Burn rate stock bootstrapping direct mailing release client traction creative facebook monetization crowdfunding rockstar.
-							</p>
-
-						<div class="author-info pull-left text-left">
-							<div class="client-image">
-								<img src="{{ asset('assets/img/avater-4.jpg') }}" class="img-responsive" alt="">
-							</div>
-
-							<div class="client-details">
-								<h6 class="dark-text">Celia M.</h6>
-								<div class="extra-small-text">
-									Founder, <a href="#">ThemeAtelier</a>
-								</div>
-
-							</div>
-
-						</div>
-						</blockquote>
-
-						<div class="q-sign bottom">
-							”
-						</div>
-					</div>
+						</div>					
+					@endforeach
 				</div>
 			</div>
         </div>
@@ -865,7 +737,7 @@
 <!-- Testimonials End -->
 
 <!-- How we work Start -->
-<section id="how-it-works" class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('assets/img/how-works.jpg') }})">
+<section id="how-it-works" class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
         <div class="container">
 				<div class="row">
 					<div class="col-sm-12">
@@ -1246,46 +1118,28 @@
 </section>
 <!-- ========== Contact section End ========== -->
 <!-- ========== Footer Start ========== -->
-<footer id="footer" class="pt80" style="background-image:url({{ asset('assets/img/footer-bg.jpg') }})">
+<footer id="footer" class="pt80" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
 		<div class="row">
 			<div class="footer-wrap clearfix">
 				<div class="col-md-3 col-sm-6">
 					<div class="footer-col">
 						<div class="footer-logo text-center">
-							<img src="{{ asset('assets/img/logo-in-dark.png') }}" class="img-responsive" alt="Logo">
+							<img src="{{ asset('images/icon-100.png') }}" class="img-responsive" alt="Logo">
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-6">
+				<div class="col-md-9 col-sm-6">
 					<div class="footer-col">
-						<h6>About us</h6>
-						<p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="footer-col">
-						<h6>Categories</h6>
-						<ul>
-							<li><a href="#">Abstruct</a></li>
-							<li><a href="#">Business</a></li>
-							<li><a href="#">Corporate</a></li>
-							<li><a href="#">Minimal</a></li>
-							<li><a href="#">Technology</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="footer-col">
-						<h6>Contact us</h6>
-						<p>44751 Clarksburg Park Road<br>Call us +1856-236-1853<br>Contact@archer.com<br>Locate on Google Map</p>
+						<h6>Tentang Kami</h6>
+						<p> Kami memiliki komitmen untuk memberikan layanan terbaik kepada Anda dan selalu berusaha untuk menyediakan produk dan layanan terbaik yang Anda butuhkan. Apabila untuk alasan tertentu Anda merasa tidak puas dengan pelayanan kami, Anda dapat menyampaikan kritik dan saran Anda kepada kami. Kami akan menidaklanjuti masukan yang Anda berikan dan bila perlu mengambil tindakan untuk mencegah masalah yang sama terulang kembali..</p>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="footer-copyright text-center">
-				<p>Copyright: <a href="http://www.themeatelier.net">ThemeAtelier</a> 2018, All rights reserved.</p>
+				<p>Copyright: <a href="#">Kec. Cimahi Tengah</a> {{ date('Y') }}, All rights reserved.</p>
 			</div>
 		</div>
 	</div>

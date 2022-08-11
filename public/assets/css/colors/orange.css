@@ -19,7 +19,7 @@ nav.navbar ul.nav > li > a:hover,
 nav.navbar ul.nav > li.active > a:hover,
 nav.navbar ul.nav li.active > a,
 nav.navbar li.dropdown ul.dropdown-menu > li a:hover {
-    color: #FF5D07;
+    color: #FF5D07 !important;
 }
 nav.navbar.navbar-transparent ul.nav > li > a:hover,
 nav.navbar.no-background ul.nav > li > a:hover,
