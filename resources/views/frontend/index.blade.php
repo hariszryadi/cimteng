@@ -56,33 +56,38 @@
 	<div class="header-top primary-bg">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-10">
 					<div class="top-cta">
 						<ul>
 							<li>
 								@if ($medsos[0]->email != null)
-									<a href="#"><i class="fa fa-envelope"></i>{{ $medsos[0]->email }}</a>
+									<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{ $medsos[0]->email }}" target="_blank"><i class="fa fa-envelope"></i>{{ $medsos[0]->email }}</a>
 								@endif
 							</li>
 							<li>
 								@if ($medsos[0]->facebook != null)
-									<a href="#"><i class="fa fa-facebook"></i>{{ $medsos[0]->facebook }}</a>
+									<a href="{{ $medsos[0]->url_facebook }}" target="_blank"><i class="fa fa-facebook"></i>{{ $medsos[0]->facebook }}</a>
 								@endif
 							</li>
 							<li>
 								@if ($medsos[0]->twitter != null)
-									<a href="#"><i class="fa fa-twitter"></i>{{ $medsos[0]->twitter }}</a>
+									<a href="{{ $medsos[0]->url_twitter }}" target="_blank"><i class="fa fa-twitter"></i>{{ $medsos[0]->twitter }}</a>
 								@endif
 							</li>
 							<li>
 								@if ($medsos[0]->facebook != null)
-									<a href="#"><i class="fa fa-instagram"></i>{{ $medsos[0]->instagram }}</a>
+									<a href="{{ $medsos[0]->url_instagram }}" target="_blank"><i class="fa fa-instagram"></i>{{ $medsos[0]->instagram }}</a>
+								@endif
+							</li>
+							<li>
+								@if ($medsos[0]->youtube != null)
+									<a href="{{ $medsos[0]->url_youtube }}" target="_blank"><i class="fa fa-youtube-play"></i>{{ $medsos[0]->youtube }}</a>
 								@endif
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<ul class="social-link pull-right">
 						<li><a href="{{ route('login') }}"><i class="fa fa-user"></i></a></li>
 					</ul>
@@ -265,7 +270,7 @@
 			<div class="col-sm-12">
 				<div class="section-title text-center mb70">
 					<h2>BERITA</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna. </p>
+					<p>Kumpulan berita terbaru di Kecamatan Cimahi Tengah. </p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
 			</div>
@@ -304,69 +309,91 @@
 <!-- News End -->
 
 
-<!-- Call to action start -->
+<!-- Spacer start -->
 <section class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="white-text call-to-intro text-center col-sm-8 col-sm-offset-2">
-					<h5>IS NOT AWESOME?</h5>
-					<h2>This is a heading text goes here...</h2>
-					<p>Here will be appear some paragraph text for this awesome background parallax section. You may change this text by customizing this template very easily.</p>
+					<h2>KECAMATAN CIMAHI TENGAH</h2>
+					<p>#cimahitengahkuat</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 </section>
-<!-- Call to action End-->
+<!-- Spacer End-->
 
-<!-- What we do Start -->
+<!-- Video Start -->
 <section class="section-padding gray-bg">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="section-title text-center mb50">
 					<h2>VIDEO</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna. </p>
+					<p>Kumpulan video kegiatan di Kecamatan Cimahi Tengah. </p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row scrollmenu">
-			@foreach ($videos as $video)
-				@if ($video->source == '1')
-					<div class="box-video">
-						<video width="360" height="180" controls="controls">
-							<source src="{{ asset('storage/'.$video->video) }}" type="video/mp4">
-						</video>
-					</div>
-				@else
-					<div class="box-video">
-						<iframe width="360" height="180" src="http://www.youtube.com/embed/{{ $video->video }}" frameborder="0" allowfullscreen></iframe>
-					</div>
-				@endif
-			@endforeach
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="owl-carousel owl-theme team-carousel">
+					@foreach ($videos as $item)
+						<div class="each-box">
+							<div class="inner white-bg text-center">
+								{{-- <div class="box-hover"> --}}
+									@if ($item->source == '1')
+										<div class="box-video" style="padding: 8px;">
+											<video width="355" height="180" controls="controls">
+												<source src="{{ asset('storage/'.$item->video) }}" type="video/mp4">
+											</video>
+										</div>
+									@else
+										<div class="box-video" style="padding: 8px;">
+											<iframe width="355" height="180" src="http://www.youtube.com/embed/{{ $item->video }}" frameborder="0" allowfullscreen></iframe>
+										</div>
+									@endif
+								{{-- </div> --}}
+								<div class="clearfix"></div>
+								<div class="detail">
+									<h6 class="video-caption">{{ $item->caption }}</h6>
+									@php
+										$date = $item->created_at;
+										$date->settings(['formatFunction' => 'translatedFormat']);
+									@endphp
+									<p class="news-date">{{ $date->format('l, j F Y ') }}</p>
+									<div class="video-description">
+										<p>{{ $item->description }}</p>
+									</div>
+								</div>
+									
+							</div> <!-- End: .inner -->
+						</div>
+					@endforeach
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
-<!-- What we do End -->
+<!-- Video End -->
 
-<!-- How we work Start -->
+<!-- Spacer Start -->
 <section id="how-it-works" class="section-padding parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
         <div class="container">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="section-title text-center light-text mb50">
-							<h2>How we work</h2>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
+							<h2>KECAMATAN CIMAHI TENGAH</h2>
+							<p>#cimahitengahkuat</p>
 						</div>
 					</div>
 				</div>
         </div> <!-- End: .container -->
 </section>
-<!-- How we work End -->
+<!-- Spacer End -->
 
 <!-- ========== Location Start ========== -->
 <section class="section-padding white-bg">
@@ -375,7 +402,6 @@
 			<div class="col-sm-12">
 				<div class="section-title text-center mb70">
 					<h2>LOKASI</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
 			</div>
@@ -384,7 +410,7 @@
 		<div class="row">
 			
 			<div class="col-md-6 col-sm-12">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.151553318884!2d107.5440882140323!3d-6.872437595033727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e441138c3119%3A0x65b8ad189b446860!2sKantor%20Kecamatan%20Cimahi%20Tengah!5e0!3m2!1sid!2sid!4v1660294539229!5m2!1sid!2sid" width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<iframe style="border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 0.25rem;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.151553318884!2d107.5440882140323!3d-6.872437595033727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e441138c3119%3A0x65b8ad189b446860!2sKantor%20Kecamatan%20Cimahi%20Tengah!5e0!3m2!1sid!2sid!4v1660294539229!5m2!1sid!2sid" width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 			
 			<div class="col-md-6 col-sm-12">
@@ -403,7 +429,6 @@
 			<div class="col-sm-12">
 				<div class="section-title text-center mb70">
 					<h2>Statistik Pengunjung</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
 					<div class="section-divider divider-traingle"></div>
 				</div>
 			</div>

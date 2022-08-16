@@ -141,6 +141,10 @@
                     },
                     'source' : {
                         validation : 'required'
+                    },
+                    'description' : {
+                        validation : 'required, length, custom',
+                        length : '0-255'
                     }
                 }
             };

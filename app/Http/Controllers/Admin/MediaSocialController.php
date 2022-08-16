@@ -27,7 +27,11 @@ class MediaSocialController extends Controller
             'facebook' => $request->facebook,
             'twitter' => $request->twitter,
             'instagram' => $request->instagram,
-            'youtube' => $request->youtube
+            'youtube' => $request->youtube,
+            'url_facebook' => $request->url_facebook,
+            'url_twitter' => $request->url_twitter,
+            'url_instagram' => $request->url_instagram,
+            'url_youtube' => $request->url_youtube
         ]);
 
         return redirect()->back()->with('success', 'Success Message');
