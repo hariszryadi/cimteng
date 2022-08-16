@@ -14,6 +14,11 @@ class NewsController extends Controller
     protected $_view = 'backend.cms.news.';
     protected $_route = 'admin.cms.news.index';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         if (request()->ajax()) {

@@ -84,39 +84,42 @@
                         </li>
                     @endif --}}
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(6)->first()->read_right == true)
+                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(6)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-file-upload"></i>
-                                <span>Import</span></a>
+                            <a href="#" class="nav-link"><i class="icon-cube4"></i>
+                                <span>Kelurahan</span></a>
                             <ul>
-                                <li class="nav-item {{request()->is('admin/finger/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.finger.index')}}">Set ID Finger</a>
+                                <li class="nav-item {{request()->is('admin/urban-village/monograph/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.urbanVillage.monograph.index')}}">Monografi</a>
                                 </li>
-                                <li class="nav-item {{request()->is('admin/import/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.import.index')}}">Import Absensi</a>
+                                <li class="nav-item {{request()->is('admin/urban-village/employee/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.urbanVillage.employee.index')}}">Kepegawaian</a>
+                                </li>
+                                <li class="nav-item {{request()->is('admin/urban-village/potency/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.urbanVillage.potency.index')}}">Potensi</a>
                                 </li>
                             </ul>
                         </li>
-                    @endif --}}
+                    {{-- @endif --}}
 
-                    <li class="nav-item {{ request()->is('admin/media-social') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }}">
                         <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-iphone"></i>
                             <span>Media Sosial</span>
                         </a>
                     </li>
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true)
+                    @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true)
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack"></i>
-                                <span>CMS</span></a>
+                                <span>Master</span></a>
                             <ul>
-                                <li class="nav-item {{request()->is('admin/slider/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.slider.index')}}">Slider</a>
+                                <li class="nav-item {{request()->is('admin/master/type-potency/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.master.typePotency.index')}}">Jenis Usaha</a>
                                 </li>
 
                             </ul>
                         </li>
-                    @endif --}}
+                    @endif
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(8)->first()->read_right == true ||
                         auth()->user()->roles()->first()->permission_role()->byId(9)->first()->read_right == true ||

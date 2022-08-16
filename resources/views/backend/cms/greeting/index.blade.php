@@ -52,7 +52,9 @@
                 autoWidth: false,
                 bLengthChange: false,
                 bFilter: false,
-                pageLength: 10,
+                bPaginate: false,
+                bInfo: false,
+                // pageLength: 10,
                 ajax: {
                     url: "{{route('admin.cms.greeting.index')}}",
                 },

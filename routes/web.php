@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\Cms\BannerController;
 use App\Http\Controllers\Admin\MediaSocialController;
 use App\Http\Controllers\Admin\Cms\GreetingController;
+use App\Http\Controllers\Admin\TypePotencyController;
+use App\Http\Controllers\Admin\UrbanVillagePotencyController;
+use App\Http\Controllers\Admin\UrbanVillageEmployeeController;
+use App\Http\Controllers\Admin\UrbanVillageMonographController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +78,52 @@ Route::group(['prefix' => 'admin'], function () {
         });
     });
 
+    /** Urban Village */
+    Route::group(['prefix' => 'urban-village'], function () {
+        /** Monograph */
+        Route::group(['prefix' => 'monograph'], function () {
+            Route::get('/index', [UrbanVillageMonographController::class, 'index'])->name('admin.urbanVillage.monograph.index');
+            Route::get('/{id}/edit', [UrbanVillageMonographController::class, 'edit'])->name('admin.urbanVillage.monograph.edit');
+            Route::post('/update', [UrbanVillageMonographController::class, 'update'])->name('admin.urbanVillage.monograph.update');
+        });
+
+        /** Employee */
+        Route::group(['prefix' => 'employee'], function () {
+            Route::get('/index', [UrbanVillageEmployeeController::class, 'index'])->name('admin.urbanVillage.employee.index');
+            Route::get('/create', [UrbanVillageEmployeeController::class, 'create'])->name('admin.urbanVillage.employee.create');
+            Route::post('/store', [UrbanVillageEmployeeController::class, 'store'])->name('admin.urbanVillage.employee.store');
+            Route::get('/{id}/edit', [UrbanVillageEmployeeController::class, 'edit'])->name('admin.urbanVillage.employee.edit');
+            Route::post('/update', [UrbanVillageEmployeeController::class, 'update'])->name('admin.urbanVillage.employee.update');
+            Route::post('/destroy', [UrbanVillageEmployeeController::class, 'destroy'])->name('admin.urbanVillage.employee.destroy');
+        });
+
+        /** Potency */
+        Route::group(['prefix' => 'potency'], function () {
+            Route::get('/index', [UrbanVillagePotencyController::class, 'index'])->name('admin.urbanVillage.potency.index');
+            Route::get('/create', [UrbanVillagePotencyController::class, 'create'])->name('admin.urbanVillage.potency.create');
+            Route::post('/store', [UrbanVillagePotencyController::class, 'store'])->name('admin.urbanVillage.potency.store');
+            Route::get('/{id}/edit', [UrbanVillagePotencyController::class, 'edit'])->name('admin.urbanVillage.potency.edit');
+            Route::post('/update', [UrbanVillagePotencyController::class, 'update'])->name('admin.urbanVillage.potency.update');
+            Route::post('/destroy', [UrbanVillagePotencyController::class, 'destroy'])->name('admin.urbanVillage.potency.destroy');
+        });
+    });
+
     /** Media Social */
     Route::get('/media-social/index', [MediaSocialController::class, 'index'])->name('admin.mediaSocial.index');
     Route::post('/media-social/update', [MediaSocialController::class, 'update'])->name('admin.mediaSocial.update');
+
+     /** Master */
+     Route::group(['prefix' => 'master'], function () {
+        /** Type Potency */
+        Route::group(['prefix' => 'type-potency'], function () {
+            Route::get('/index', [TypePotencyController::class, 'index'])->name('admin.master.typePotency.index');
+            Route::get('/create', [TypePotencyController::class, 'create'])->name('admin.master.typePotency.create');
+            Route::post('/store', [TypePotencyController::class, 'store'])->name('admin.master.typePotency.store');
+            Route::get('/{id}/edit', [TypePotencyController::class, 'edit'])->name('admin.master.typePotency.edit');
+            Route::post('/update', [TypePotencyController::class, 'update'])->name('admin.master.typePotency.update');
+            Route::post('/destroy', [TypePotencyController::class, 'destroy'])->name('admin.master.typePotency.destroy');
+        });
+    });
 
     /** User Config */
     Route::group(['prefix' => 'role'], function() {

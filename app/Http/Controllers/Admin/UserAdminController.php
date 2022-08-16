@@ -17,6 +17,11 @@ class UserAdminController extends Controller
     protected $disabled;
     protected $_view = 'backend.user-admin.';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         if (request()->ajax()) {

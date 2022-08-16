@@ -3502,5 +3502,57 @@ ul.comment-list:not(.browser-default) {
 }
 
 .img-news {
-	height: 100px;;
+	height: 175px;
+}
+
+.content-wrap {
+    width: 100%; 
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.news-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* number of lines to show */
+			line-clamp: 3; 
+	-webkit-box-orient: vertical;
+	height: 95px !important;
+	color: #000;
+	/* font-weight: bold; */
+	font-size: 16px;
+}
+
+.news-title:hover {
+	color: #FF5D07;
+}
+
+.news-date {
+	font-size: 11px;
+}
+
+.news-content {
+	margin-top: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5; /* number of lines to show */
+			line-clamp: 5; 
+	-webkit-box-orient: vertical;
+	text-align: justify;
+	height: 150px;
+}
+
+.image-center {
+	display: block;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+	.image-center {
+	  display: none;
+	}
 }

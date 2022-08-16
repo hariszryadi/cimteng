@@ -28,7 +28,7 @@ class CreateUrbanVillagesTable extends Migration
                 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
-                'name' => 'Ciguru Tengah',
+                'name' => 'Cigugur Tengah',
                 'slug' => 'cigugur-tengah',
                 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s')
             ],

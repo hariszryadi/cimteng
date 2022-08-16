@@ -13,6 +13,11 @@ class VideoController extends Controller
 {
     protected $_view = 'backend.cms.video.';
     protected $_route = 'admin.cms.video.index';
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {

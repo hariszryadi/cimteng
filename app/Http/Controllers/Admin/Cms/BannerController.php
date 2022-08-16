@@ -14,6 +14,11 @@ class BannerController extends Controller
     protected $_view = 'backend.cms.banner.';
     protected $_route = 'admin.cms.banner.index';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         if (request()->ajax()) {
