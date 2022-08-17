@@ -64,25 +64,25 @@
                     {{-- @endif --}}
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true)
+                        auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-transmission"></i>
-                                <span>Transaction</span></a>
+                            <a href="#" class="nav-link"><i class="icon-cube2"></i>
+                                <span>Kecamatan</span></a>
                             <ul>
-                                @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true)
-                                    <li class="nav-item {{request()->is('admin/transaction-leave/*') ? 'active' : ''}}">
-                                        <a href="{{route('admin.transactionLeave.index')}}">Transaksi Cuti/Izin</a>
+                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true) --}}
+                                    <li class="nav-item">
+                                        <a href="#">Data Lakip</a>
                                     </li>
-                                @endif
+                                {{-- @endif --}}
 
-                                @if (auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true)
-                                    <li class="nav-item {{request()->is('admin/transaction-overtime/*') ? 'active' : ''}}">
-                                        <a href="{{route('admin.transactionOvertime.index')}}">Transaksi Lembur</a>
+                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
+                                    <li class="nav-item {{request()->is('admin/vision-mission/*') ? 'active' : ''}}">
+                                        <a href="{{route('admin.visionMission.index')}}">Visi & Misi</a>
                                     </li>
-                                @endif
+                                {{-- @endif --}}
                             </ul>
                         </li>
-                    @endif --}}
+                    {{-- @endif --}}
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(6)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">

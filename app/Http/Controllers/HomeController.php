@@ -8,9 +8,16 @@ use App\Models\Video;
 use App\Models\Banner;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
+use App\Models\VisionMission;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $medsos = MediaSocial::get();
+        view()->share('medsos', $medsos);
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -18,12 +25,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $medsos = MediaSocial::get();
         $greeting = Greeting::get();
         $banners = Banner::where('status', '1')->orderBy('id')->get();
         $videos = Video::where('status', '1')->orderBy('id')->get();
         $news = News::where('status', '1')->orderBy('id')->get();
         
-        return view('frontend.index', compact('medsos', 'greeting', 'banners', 'videos', 'news'));
+        return view('frontend.index', compact('greeting', 'banners', 'videos', 'news'));
+    }
+
+    public function lakip()
+    {
+        return view('frontend.lakip');
+    }
+
+    public function vision_mission()
+    {
+        $vm = VisionMission::get();
+        return view('frontend.vision-mission', compact('vm'));
     }
 }

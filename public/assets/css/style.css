@@ -3542,14 +3542,14 @@ ul.comment-list:not(.browser-default) {
 }
 
 .image-center {
-	display: block;
     margin: 0 auto;
+	padding: 24px;
 }
 
 @media screen and (max-width: 600px) {
-	.image-center {
+	/* .image-center {
 	  display: none;
-	}
+	} */
 
 	.box-video iframe {
 		width: 330px;
@@ -3577,4 +3577,9 @@ ul.comment-list:not(.browser-default) {
 	-webkit-box-orient: vertical;
 	text-align: justify;
 	height: 120px;
+}
+
+.btn-lakip {
+	border-radius: 15px;
+	text-align: center;
 }
