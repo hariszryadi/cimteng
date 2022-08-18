@@ -1,15 +1,15 @@
 @extends('layouts.backend.master')
 
 @section('title-header')
-    Sambutan Camat
+    Visi dan Misi
 @endsection
 
 @section('menus')
-    CMS
+    Kecamatan
 @endsection
 
 @section('submenus')
-    Sambutan Camat
+    Visi dan Misi
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
             <h5 class="panel-title">Form Visi Misi</h5>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" id="form" action="{{route('admin.visionMission.update' )}}" method="POST">
+            <form class="form-horizontal" id="form" action="{{route('admin.district.visionMission.update' )}}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <input type="hidden" name="id" value="{{ $vm->id }}">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group" style="margin-top: 50px; margin-left: 10px;">
-                    <a class="btn btn-danger" href="{{route('admin.visionMission.index')}}">Kembali</a>
+                    <a class="btn btn-danger" href="{{route('admin.district.visionMission.index')}}">Kembali</a>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
 

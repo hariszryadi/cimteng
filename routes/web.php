@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MediaSocialController;
 use App\Http\Controllers\Admin\TypePotencyController;
 use App\Http\Controllers\Admin\Cms\GreetingController;
 use App\Http\Controllers\Admin\VisionMissionController;
+use App\Http\Controllers\Admin\DistrictMonographController;
 use App\Http\Controllers\Admin\UrbanVillagePotencyController;
 use App\Http\Controllers\Admin\UrbanVillageEmployeeController;
 use App\Http\Controllers\Admin\UrbanVillageMonographController;
@@ -29,7 +30,8 @@ use App\Http\Controllers\Admin\UrbanVillageMonographController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil/lakip', [HomeController::class, 'lakip'])->name('profil.lakip');
-Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visiMisi');
+Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('profil.monograph');
+Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 
 Auth::routes();
 
@@ -81,6 +83,20 @@ Route::group(['prefix' => 'admin'], function () {
         });
     });
 
+    /** District */
+    Route::group(['prefix' => 'district'], function () {
+        /** Monograph */
+        Route::get('/index', [DistrictMonographController::class, 'index'])->name('admin.district.monograph.index');
+        Route::post('/update', [DistrictMonographController::class, 'update'])->name('admin.district.monograph.update');
+
+        /** Vision Mission */
+        Route::group(['prefix' => 'vision-mission'], function () {
+            Route::get('/index', [VisionMissionController::class, 'index'])->name('admin.district.visionMission.index');
+            Route::get('/{id}/edit', [VisionMissionController::class, 'edit'])->name('admin.district.visionMission.edit');
+            Route::post('/update', [VisionMissionController::class, 'update'])->name('admin.district.visionMission.update');
+        });
+    });
+
     /** Urban Village */
     Route::group(['prefix' => 'urban-village'], function () {
         /** Monograph */
@@ -114,13 +130,6 @@ Route::group(['prefix' => 'admin'], function () {
     /** Media Social */
     Route::get('/media-social/index', [MediaSocialController::class, 'index'])->name('admin.mediaSocial.index');
     Route::post('/media-social/update', [MediaSocialController::class, 'update'])->name('admin.mediaSocial.update');
-
-    /** Vision Mission */
-    Route::group(['prefix' => 'vision-mission'], function () {
-        Route::get('/index', [VisionMissionController::class, 'index'])->name('admin.visionMission.index');
-        Route::get('/{id}/edit', [VisionMissionController::class, 'edit'])->name('admin.visionMission.edit');
-        Route::post('/update', [VisionMissionController::class, 'update'])->name('admin.visionMission.update');
-    });
 
      /** Master */
      Route::group(['prefix' => 'master'], function () {

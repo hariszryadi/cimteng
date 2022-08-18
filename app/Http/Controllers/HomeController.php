@@ -9,6 +9,7 @@ use App\Models\Banner;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
 use App\Models\VisionMission;
+use App\Models\DistrictMonograph;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,12 @@ class HomeController extends Controller
     public function lakip()
     {
         return view('frontend.lakip');
+    }
+
+    public function monograph()
+    {
+        $monograph = DistrictMonograph::get();
+        return view('frontend.monograph', compact('monograph'));
     }
 
     public function vision_mission()

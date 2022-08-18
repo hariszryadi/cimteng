@@ -5,11 +5,11 @@
 @endsection
 
 @section('menus')
-    Visi dan Misi
+    Kecamatan
 @endsection
 
 @section('submenus')
-    
+    Visi dan Misi
 @endsection
 
 @section('content')
@@ -53,7 +53,7 @@
                 bInfo: false,
                 // pageLength: 10,
                 ajax: {
-                    url: "{{route('admin.visionMission.index')}}",
+                    url: "{{route('admin.district.visionMission.index')}}",
                 },
                 columns: [
                     {

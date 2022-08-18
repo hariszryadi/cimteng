@@ -18,7 +18,7 @@
 	</div>
 </section>
 <!-- ========== Breadcramb End ========== -->
-<!-- Lakip Start -->
+<!-- Visi Misi Start -->
 <section class="section-padding white-bg">
 	<div class="container">
 		<div class="row">
@@ -50,5 +50,5 @@
 		</div>
 	</div>
 </section>
-<!-- Lakip End -->
+<!-- Visi Misi End -->
 @endsection

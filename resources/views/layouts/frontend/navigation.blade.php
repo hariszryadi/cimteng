@@ -33,8 +33,8 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Profil</a>
 					<ul class="dropdown-menu">
 						<li class="{{ request()->is('profil/lakip') ? 'active' : '' }}"><a href="{{ route('profil.lakip') }}">Data Lakip</a></li>
-						<li><a href="#">Monografi Kecamatan</a></li>
-						<li class="{{ request()->is('profil/visi-misi') ? 'active' : '' }}"><a href="{{ route('profil.visiMisi') }}">Visi & Misi</a></li>
+						<li class="{{ request()->is('profil/monografi') ? 'active' : '' }}"><a href="{{ route('profil.monograph') }}">Monografi Kecamatan</a></li>
+						<li class="{{ request()->is('profil/visi-misi') ? 'active' : '' }}"><a href="{{ route('profil.visionMission') }}">Visi & Misi</a></li>
 						<li><a href="#">Struktur Organisasi</a></li>
 						<li><a href="#">Kepegawaian</a></li>
 						<li><a href="#">Galeri Foto</a></li>

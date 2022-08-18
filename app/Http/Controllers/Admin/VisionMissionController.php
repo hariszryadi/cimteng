@@ -9,8 +9,8 @@ use DataTables;
 
 class VisionMissionController extends Controller
 {
-    protected $_view = 'backend.vision-mission.';
-    protected $_route = 'admin.visionMission.index';
+    protected $_view = 'backend.district.vision-mission.';
+    protected $_route = 'admin.district.visionMission.index';
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class VisionMissionController extends Controller
                     $x = '';
                     // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
                         $x .= '<li>
-                                    <a href="/admin/vision-mission/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
+                                    <a href="/admin/district/vision-mission/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
                     // }
                     return '<ul class="icons-list">

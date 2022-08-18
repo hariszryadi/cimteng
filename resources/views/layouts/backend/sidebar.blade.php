@@ -66,7 +66,7 @@
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true ||
                         auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-cube2"></i>
+                            <a href="#" class="nav-link"><i class="icon-stack-text"></i>
                                 <span>Kecamatan</span></a>
                             <ul>
                                 {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true) --}}
@@ -75,9 +75,13 @@
                                     </li>
                                 {{-- @endif --}}
 
+                                <li class="nav-item {{request()->is('admin/district/monograph/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.district.monograph.index')}}">Monografi</a>
+                                </li>
+
                                 {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
-                                    <li class="nav-item {{request()->is('admin/vision-mission/*') ? 'active' : ''}}">
-                                        <a href="{{route('admin.visionMission.index')}}">Visi & Misi</a>
+                                    <li class="nav-item {{request()->is('admin/district/vision-mission/*') ? 'active' : ''}}">
+                                        <a href="{{route('admin.district.visionMission.index')}}">Visi & Misi</a>
                                     </li>
                                 {{-- @endif --}}
                             </ul>
@@ -86,7 +90,7 @@
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(6)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-cube4"></i>
+                            <a href="#" class="nav-link"><i class="icon-stack-empty"></i>
                                 <span>Kelurahan</span></a>
                             <ul>
                                 <li class="nav-item {{request()->is('admin/urban-village/monograph/*') ? 'active' : ''}}">
@@ -103,7 +107,7 @@
                     {{-- @endif --}}
 
                     <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-iphone"></i>
+                        <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-share3"></i>
                             <span>Media Sosial</span>
                         </a>
                     </li>
