@@ -84,6 +84,10 @@
                                         <a href="{{route('admin.district.visionMission.index')}}">Visi & Misi</a>
                                     </li>
                                 {{-- @endif --}}
+
+                                <li class="nav-item {{request()->is('admin/district/employee/*') ? 'active' : ''}}">
+                                    <a href="{{route('admin.district.employee.index')}}">Kepegawaian</a>
+                                </li>
                             </ul>
                         </li>
                     {{-- @endif --}}

@@ -22,7 +22,7 @@ class UrbanVillageEmployeeController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return Datatables::of(UrbanVillageEmployee::with('urban_village')->orderBy('id', 'desc')->get())
+            return Datatables::of(UrbanVillageEmployee::with('urban_village')->orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
                     // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {

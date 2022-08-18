@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\UrbanVillagePotency;
-use App\Models\UrbanVillage;
-use App\Models\TypePotency;
+use App\Models\DistrictEmployee;
 use DataTables;
+use File;
 
-class UrbanVillagePotencyController extends Controller
+class DistrictEmployeeController extends Controller
 {
-    protected $_view = 'backend.urban-village.potency.';
-    protected $_route = 'admin.urbanVillage.potency.index';
+    protected $_view = 'backend.district.employee.';
+    protected $_route = 'admin.district.employee.index';
 
     public function __construct()
     {
@@ -22,17 +21,17 @@ class UrbanVillagePotencyController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return Datatables::of(UrbanVillagePotency::with('urban_village', 'type_potency')->orderBy('id')->get())
+            return Datatables::of(DistrictEmployee::orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
                     // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
                         $x .= '<li>
-                                    <a href="/admin/urban-village/potency/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
+                                    <a href="/admin/district/employee/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
                     // }
                     // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
                         $x .= '<li>
-                                    <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'"><i class="icon-bin text-danger"></i> Hapus</a>
+                                    <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-avatar="' . $data->avatar . '"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
                     // }
                     return '<ul class="icons-list">
@@ -54,23 +53,21 @@ class UrbanVillagePotencyController extends Controller
 
     public function create()
     {
-        $urban_village = UrbanVillage::orderBy('id')->get();
-        $type_potency = TypePotency::orderBy('id')->get();
-        return view($this->_view.'form')->with(compact('urban_village', 'type_potency'));
+        return view($this->_view.'form');
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'urban_village_id' => 'required'
-        ]);
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('district/employee', ['disk' => 'public']);
+        }
 
-        $data = UrbanVillagePotency::create([
-            'urban_village_id' => $request->urban_village_id,
-            'location' => $request->location,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
-            'type_potency_id' => $request->type_potency_id
+        $data = DistrictEmployee::create([
+            'avatar' => $path,
+            'name' => $request->name,
+            'position' => $request->position,
+            'rank' => $request->rank,
+            'education' => $request->education
         ]);
 
         return redirect()->route($this->_route)->with('success', 'Success Message');
@@ -78,32 +75,40 @@ class UrbanVillagePotencyController extends Controller
 
     public function edit($id)
     {
-        $urban_village = UrbanVillage::orderBy('id')->get();
-        $potency = UrbanVillagePotency::find($id);
-        $type_potency = TypePotency::orderBy('id')->get();
-        return view($this->_view.'form')->with(compact('potency', 'urban_village', 'type_potency'));
+        $employee = DistrictEmployee::find($id);
+        return view($this->_view.'form')->with(compact('employee'));
     }
 
     public function update(Request $request)
     {
         $data = [];
-        $potency = UrbanVillagePotency::where('id', $request->id);
+        $avatar = $request->file('avatar');
+        $employee = DistrictEmployee::where('id', $request->id);
 
-        $data['urban_village_id'] = $request->urban_village_id;
-        $data['location'] = $request->location;
-        $data['rt'] = $request->rt;
-        $data['rw'] = $request->rw;
-        $data['type_potency_id'] = $request->type_potency_id;
+        if ($avatar != '') {
+            $path = $request->file('avatar')->store('district/employee', ['disk' => 'public']);
+            $avatar = $employee->first()->avatar;
+            $data['avatar'] = $path;
+            $path = \storage_path('app/public/' . $avatar);
+            File::delete($path);
+        }
 
-        $potency->update($data);
+        $data['name'] = $request->name;
+        $data['position'] = $request->position;
+        $data['rank'] = $request->rank;
+        $data['education'] = $request->education;
+
+        $employee->update($data);
 
         return redirect()->route($this->_route)->with('success', 'Success Message');
     }
 
     public function destroy(Request $request)
     {
-        $potency = UrbanVillagePotency::where('id', $request->id);
-        $potency->delete();
+        $employee = DistrictEmployee::where('id', $request->id);
+        $path = \storage_path('app/public/' . $request->avatar);
+        File::delete($path);
+        $employee->delete();
 
         return response()->json(['success' => 'Delete Data Successfully']);
     }

@@ -102,6 +102,7 @@
                                     "src": event.target.result,
                                     "class": idx,
                                     "class": "img-thumbnail img-banner",
+                                    "style": "margin-top: 12px"
                                 }).appendTo(previews);
                         };
                         reader.readAsDataURL(file);

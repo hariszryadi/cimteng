@@ -9,6 +9,7 @@ use App\Models\Banner;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
 use App\Models\VisionMission;
+use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
 
 class HomeController extends Controller
@@ -49,5 +50,11 @@ class HomeController extends Controller
     {
         $vm = VisionMission::get();
         return view('frontend.vision-mission', compact('vm'));
+    }
+
+    public function employee()
+    {
+        $employee = DistrictEmployee::orderBy('id')->get();
+        return view('frontend.employee', compact('employee'));
     }
 }

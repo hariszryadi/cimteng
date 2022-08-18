@@ -98,6 +98,7 @@
                                     "src": event.target.result,
                                     "class": idx,
                                     "class": "img-thumbnail img-greeting",
+                                    "style": "margin-top: 12px"
                                 }).appendTo(previews);
                         };
                         reader.readAsDataURL(file);

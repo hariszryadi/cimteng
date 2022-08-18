@@ -5,7 +5,7 @@
 @endsection
 
 @section('menus')
-    Kelurahan
+    Kecamatan
 @endsection
 
 @section('submenus')
@@ -15,10 +15,10 @@
 @section('content')
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Form Kepegawaian Kelurahan</h5>
+            <h5 class="panel-title">Form Kepegawaian Kecamatan</h5>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" id="form" action="{{route('admin.urbanVillage.employee.'. (isset($employee) ? 'update' : 'store') )}}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" id="form" action="{{route('admin.district.employee.'. (isset($employee) ? 'update' : 'store') )}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <input type="hidden" name="id" value="{{(isset($employee) ? "$employee->id" : '')}}">
@@ -67,23 +67,8 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label col-lg-2">Kelurahan</label>
-                    <div class="col-lg-10">
-                        <select name="urban_village_id" class="form-control">
-                            <option value="" selected disabled>Pilih Kelurahan</option>
-                            @foreach ($urban_village as $item)
-                                <option value="{{ $item->id }}" {{ isset($employee) ? $employee->urban_village_id == $item->id ? 'selected' : '' : '' }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('urban_village_id'))
-                            <span class="help-block text-danger">{{ $errors->first('urban_village_id') }}</span>
-                        @endif
-                    </div>
-                </div>
-
                 <div class="form-group" style="margin-top: 50px; margin-left: 10px;">
-                    <a class="btn btn-danger" href="{{route('admin.urbanVillage.employee.index')}}">Kembali</a>
+                    <a class="btn btn-danger" href="{{route('admin.district.employee.index')}}">Kembali</a>
                     <button type="submit" class="btn btn-primary">{{(isset($employee) ? 'Update' : 'Simpan')}}</button>
                 </div>
 

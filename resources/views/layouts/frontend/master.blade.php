@@ -92,5 +92,7 @@
 <script src="{{ asset('assets/js/gmap3.js') }}"></script>
 <!-- Custom js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+@yield('scripts')
 </body>
 </html>
