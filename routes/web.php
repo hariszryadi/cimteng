@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\IumkController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LakipController;
 use App\Http\Controllers\Admin\CommentController;
@@ -37,6 +38,7 @@ Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('pro
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
+Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
 Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');
 
@@ -169,6 +171,16 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update', [TypePotencyController::class, 'update'])->name('admin.master.typePotency.update');
             Route::post('/destroy', [TypePotencyController::class, 'destroy'])->name('admin.master.typePotency.destroy');
         });
+    });
+
+    /** IUMK */
+    Route::group(['prefix' => 'iumk'], function () {
+        Route::get('/index', [IumkController::class, 'index'])->name('admin.iumk.index');
+        Route::get('/create', [IumkController::class, 'create'])->name('admin.iumk.create');
+        Route::post('/store', [IumkController::class, 'store'])->name('admin.iumk.store');
+        Route::get('/{id}/edit', [IumkController::class, 'edit'])->name('admin.iumk.edit');
+        Route::post('/update', [IumkController::class, 'update'])->name('admin.iumk.update');
+        Route::post('/destroy', [IumkController::class, 'destroy'])->name('admin.iumk.destroy');
     });
 
     /** Comment */

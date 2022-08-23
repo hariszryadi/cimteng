@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Iumk;
 use App\Models\News;
 use App\Models\Video;
 use App\Models\Lakip;
@@ -64,6 +65,12 @@ class HomeController extends Controller
     public function e_layanan() 
     {
         return view('frontend.e-service');
+    }
+
+    public function iumk()
+    {
+        $iumk = Iumk::orderBy('id', 'desc')->get();
+        return view('frontend.iumk', compact('iumk'));
     }
 
     public function comment()

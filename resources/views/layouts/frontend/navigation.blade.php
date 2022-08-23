@@ -126,10 +126,10 @@
 				<li class="dropdown">
 					<a href="#" class="" data-toggle="dropdown" >SKM</a>
 				</li>
-				<li class="dropdown">
+				<li class="dropdown {{ request()->is('iumk') ? 'active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Potensi</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">IUMK</a></li>
+						<li class="{{ request()->is('iumk') ? 'active' : '' }}"><a href="{{ route('iumk') }}">IUMK</a></li>
 					</ul>
 				</li>
 				<li class="dropdown {{ request()->is('comment') ? 'active' : '' }}">

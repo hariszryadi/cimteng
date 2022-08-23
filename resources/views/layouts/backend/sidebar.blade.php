@@ -129,6 +129,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item {{ request()->is('admin/iumk/*') ? 'active' : '' }} ">
+                        <a href="{{ route('admin.iumk.index') }}" class="nav-link"><i class="icon-stack-check"></i>
+                            <span>IUMK</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item {{ request()->is('admin/comment/*') ? 'active' : '' }} ">
                         <a href="{{ route('admin.comment.index') }}" class="nav-link"><i class="icon-comments"></i>
                             <span>Komentar & Saran</span>

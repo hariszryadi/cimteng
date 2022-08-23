@@ -20,4 +20,8 @@ class UrbanVillage extends Model
     public function potency() {
         return $this->hasMany(UrbanVillagePotency::class);
     }
+
+    public function iumk() {
+        return $this->hasMany(Iumk::class);
+    }
 }
