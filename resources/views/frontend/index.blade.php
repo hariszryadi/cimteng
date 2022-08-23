@@ -58,12 +58,12 @@
 							<div class="inner white-bg text-center">
 								<img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="img-responsive img-news">
 								<div class="detail" style="height: 350px;">
-									<a href="#"><p class="news-title">{{ $item->title }}</p></a>
+									<a href="#" title="{{ $item->title }}"><p class="news-title">{{ $item->title }}</p></a>
 									@php
 										$date = $item->created_at;
 										$date->settings(['formatFunction' => 'translatedFormat']);
 									@endphp
-									<p class="news-date">{{ $date->format('l, j F Y ') }}</p>
+									<p class="news-date"><i class="fa fa-calendar"></i>&nbsp;{{ $date->format('l, j F Y ') }}&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ $date->format('H:i') }}</p>
 									<div class="news-content">
 										<p>{!! $item->content !!}</p>
 									</div>
@@ -133,12 +133,12 @@
 								{{-- </div> --}}
 								<div class="clearfix"></div>
 								<div class="detail">
-									<h6 class="video-caption">{{ $item->caption }}</h6>
+									<h6 class="video-caption" title="{{ $item->caption }}">{{ $item->caption }}</h6>
 									@php
 										$date = $item->created_at;
 										$date->settings(['formatFunction' => 'translatedFormat']);
 									@endphp
-									<p class="news-date">{{ $date->format('l, j F Y ') }}</p>
+									<p class="news-date"><i class="fa fa-calendar"></i>&nbsp;{{ $date->format('l, j F Y ') }}&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ $date->format('H:i') }}</p>
 									<div class="video-description">
 										<p>{{ $item->description }}</p>
 									</div>
@@ -183,10 +183,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-md-6 col-sm-12">
-				<img src="{{ asset('images/maps.svg') }}" alt="lokasi" width="370" height="370" class="image-center">
-			</div>
-			<div class="col-md-6 col-sm-12">
+			<div class="col-sm-12">
 				<iframe style="border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 0.25rem;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.151553318884!2d107.5440882140323!3d-6.872437595033727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e441138c3119%3A0x65b8ad189b446860!2sKantor%20Kecamatan%20Cimahi%20Tengah!5e0!3m2!1sid!2sid!4v1660294539229!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
         </div>

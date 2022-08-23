@@ -117,8 +117,8 @@
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="" data-toggle="dropdown" >E-Layanan</a>
+				<li class="dropdown {{ request()->is('e-layanan') ? 'active' : '' }}">
+					<a href="{{ route('e-layanan') }}" class="">E-Layanan</a>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="" data-toggle="dropdown" >E-Report</a>

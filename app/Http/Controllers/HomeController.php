@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Video;
+use App\Models\Lakip;
 use App\Models\Banner;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
@@ -37,7 +38,8 @@ class HomeController extends Controller
 
     public function lakip()
     {
-        return view('frontend.lakip');
+        $lakip = Lakip::orderBy('id', 'desc')->limit(2)->get();
+        return view('frontend.lakip', compact('lakip'));
     }
 
     public function monograph()
@@ -56,5 +58,9 @@ class HomeController extends Controller
     {
         $employee = DistrictEmployee::orderBy('id')->get();
         return view('frontend.employee', compact('employee'));
+    }
+
+    public function e_layanan() {
+        return view('frontend.e-service');
     }
 }

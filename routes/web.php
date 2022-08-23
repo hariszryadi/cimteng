@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\LakipController;
 use App\Http\Controllers\Admin\Cms\NewsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Cms\VideoController;
@@ -34,6 +35,7 @@ Route::get('/profil/lakip', [HomeController::class, 'lakip'])->name('profil.laki
 Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('profil.monograph');
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
+Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
 
 Auth::routes();
 
@@ -87,6 +89,16 @@ Route::group(['prefix' => 'admin'], function () {
 
     /** District */
     Route::group(['prefix' => 'district'], function () {
+        /** Lakip */
+        Route::group(['prefix' => 'lakip'], function () {
+            Route::get('/index', [LakipController::class, 'index'])->name('admin.district.lakip.index');
+            Route::get('/create', [LakipController::class, 'create'])->name('admin.district.lakip.create');
+            Route::post('/store', [LakipController::class, 'store'])->name('admin.district.lakip.store');
+            Route::get('/{id}/edit', [LakipController::class, 'edit'])->name('admin.district.lakip.edit');
+            Route::post('/update', [LakipController::class, 'update'])->name('admin.district.lakip.update');
+            Route::post('/destroy', [LakipController::class, 'destroy'])->name('admin.district.lakip.destroy');
+        });
+
         /** Monograph */
         Route::get('/index', [DistrictMonographController::class, 'index'])->name('admin.district.monograph.index');
         Route::post('/update', [DistrictMonographController::class, 'update'])->name('admin.district.monograph.update');

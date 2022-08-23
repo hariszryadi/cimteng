@@ -5,11 +5,11 @@
         <div class="sidebar-user">
             <div class="category-content">
                 <div class="media">
-                    <a href="#" class="media-left"><img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle img-sm" alt="" onerror="this.src='{{asset('assets/admin/images/placeholder.jpg')}}';"></a>
+                    <a href="#" class="media-left"><img src="{{ asset('storage/'.Auth::user()->avatar) }}" class="img-circle img-sm" alt="" onerror="this.src='{{ asset('assets/admin/images/placeholder.jpg') }}';"></a>
                     <div class="media-body">
-                        <span class="media-heading text-semibold">{{Auth::user()->name}}</span>
+                        <span class="media-heading text-semibold">{{ Auth::user()->name }}</span>
                         <div class="text-size-mini text-muted">
-                            {{Auth::user()->email}}
+                            {{ Auth::user()->email }}
                         </div>
                     </div>
 
@@ -70,23 +70,23 @@
                                 <span>Kecamatan</span></a>
                             <ul>
                                 {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true) --}}
-                                    <li class="nav-item">
-                                        <a href="#">Data Lakip</a>
+                                    <li class="nav-item {{ request()->is('admin/district/lakip/*') ? 'active' : ''}} ">
+                                        <a href="{{ route('admin.district.lakip.index') }}">Data Lakip</a>
                                     </li>
                                 {{-- @endif --}}
 
-                                <li class="nav-item {{request()->is('admin/district/monograph/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.district.monograph.index')}}">Monografi</a>
+                                <li class="nav-item {{ request()->is('admin/district/monograph/*') ? 'active' : ''}} ">
+                                    <a href="{{ route('admin.district.monograph.index') }}">Monografi</a>
                                 </li>
 
                                 {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
-                                    <li class="nav-item {{request()->is('admin/district/vision-mission/*') ? 'active' : ''}}">
-                                        <a href="{{route('admin.district.visionMission.index')}}">Visi & Misi</a>
+                                    <li class="nav-item {{ request()->is('admin/district/vision-mission/*') ? 'active' : ''}} ">
+                                        <a href="{{ route('admin.district.visionMission.index') }}">Visi & Misi</a>
                                     </li>
                                 {{-- @endif --}}
 
-                                <li class="nav-item {{request()->is('admin/district/employee/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.district.employee.index')}}">Kepegawaian</a>
+                                <li class="nav-item {{ request()->is('admin/district/employee/*') ? 'active' : '' }} ">
+                                    <a href="{{ route('admin.district.employee.index') }}">Kepegawaian</a>
                                 </li>
                             </ul>
                         </li>
@@ -97,37 +97,37 @@
                             <a href="#" class="nav-link"><i class="icon-stack-empty"></i>
                                 <span>Kelurahan</span></a>
                             <ul>
-                                <li class="nav-item {{request()->is('admin/urban-village/monograph/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.urbanVillage.monograph.index')}}">Monografi</a>
+                                <li class="nav-item {{ request()->is('admin/urban-village/monograph/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.urbanVillage.monograph.index') }}">Monografi</a>
                                 </li>
-                                <li class="nav-item {{request()->is('admin/urban-village/employee/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.urbanVillage.employee.index')}}">Kepegawaian</a>
+                                <li class="nav-item {{request()->is('admin/urban-village/employee/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.urbanVillage.employee.index') }}">Kepegawaian</a>
                                 </li>
-                                <li class="nav-item {{request()->is('admin/urban-village/potency/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.urbanVillage.potency.index')}}">Potensi</a>
+                                <li class="nav-item {{request()->is('admin/urban-village/potency/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.urbanVillage.potency.index') }}">Potensi</a>
                                 </li>
                             </ul>
                         </li>
                     {{-- @endif --}}
 
-                    <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }} ">
                         <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-share3"></i>
                             <span>Media Sosial</span>
                         </a>
                     </li>
 
-                    @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true)
+                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack"></i>
                                 <span>Master</span></a>
                             <ul>
-                                <li class="nav-item {{request()->is('admin/master/type-potency/*') ? 'active' : ''}}">
-                                    <a href="{{route('admin.master.typePotency.index')}}">Jenis Usaha</a>
+                                <li class="nav-item {{ request()->is('admin/master/type-potency/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.master.typePotency.index') }}">Jenis Usaha</a>
                                 </li>
 
                             </ul>
                         </li>
-                    @endif
+                    {{-- @endif --}}
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(8)->first()->read_right == true ||
                         auth()->user()->roles()->first()->permission_role()->byId(9)->first()->read_right == true ||
