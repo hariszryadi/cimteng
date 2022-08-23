@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LakipController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\Cms\NewsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Cms\VideoController;
@@ -36,6 +37,8 @@ Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('pro
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
+Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
+Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');
 
 Auth::routes();
 
@@ -167,6 +170,9 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/destroy', [TypePotencyController::class, 'destroy'])->name('admin.master.typePotency.destroy');
         });
     });
+
+    /** Comment */
+    Route::get('/comment/index', [CommentController::class, 'index'])->name('admin.comment.index');
 
     /** User Config */
     Route::group(['prefix' => 'role'], function() {

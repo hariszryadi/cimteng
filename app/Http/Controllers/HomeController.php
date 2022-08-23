@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Video;
 use App\Models\Lakip;
 use App\Models\Banner;
+use App\Models\Comment;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
 use App\Models\VisionMission;
@@ -60,7 +61,30 @@ class HomeController extends Controller
         return view('frontend.employee', compact('employee'));
     }
 
-    public function e_layanan() {
+    public function e_layanan() 
+    {
         return view('frontend.e-service');
+    }
+
+    public function comment()
+    {
+        return view('frontend.comment');
+    }
+
+    public function post_comment(Request $request)
+    {
+        try {
+            Comment::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'comment' => $request->comment
+            ]);
+    
+            return response()->json(['message' => 'email sent successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
     }
 }

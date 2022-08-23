@@ -132,8 +132,8 @@
 						<li><a href="#">IUMK</a></li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="" data-toggle="dropdown" >Komentar & Saran</a>
+				<li class="dropdown {{ request()->is('comment') ? 'active' : '' }}">
+					<a href="{{ route('comment') }}" class="">Komentar & Saran</a>
 				</li>
             </ul>
         </div><!-- /.navbar-collapse -->

@@ -63,6 +63,19 @@
                         </li>
                     {{-- @endif --}}
 
+                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true) --}}
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-stack"></i>
+                                <span>Master</span></a>
+                            <ul>
+                                <li class="nav-item {{ request()->is('admin/master/type-potency/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.master.typePotency.index') }}">Jenis Usaha</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    {{-- @endif --}}
+
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true ||
                         auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
                         <li class="nav-item nav-item-submenu">
@@ -116,18 +129,11 @@
                         </a>
                     </li>
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true) --}}
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stack"></i>
-                                <span>Master</span></a>
-                            <ul>
-                                <li class="nav-item {{ request()->is('admin/master/type-potency/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.master.typePotency.index') }}">Jenis Usaha</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    {{-- @endif --}}
+                    <li class="nav-item {{ request()->is('admin/comment/*') ? 'active' : '' }} ">
+                        <a href="{{ route('admin.comment.index') }}" class="nav-link"><i class="icon-comments"></i>
+                            <span>Komentar & Saran</span>
+                        </a>
+                    </li>
 
                     {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(8)->first()->read_right == true ||
                         auth()->user()->roles()->first()->permission_role()->byId(9)->first()->read_right == true ||
