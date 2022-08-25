@@ -16,7 +16,7 @@ class CreateGreetingsTable extends Migration
         Schema::create('greetings', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->longText('content')->default('lorem ipsum');;
+            $table->longText('content');
             $table->timestamps();
         });
 
