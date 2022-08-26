@@ -34,7 +34,7 @@
 		
 		<div class="row">
 			<div class="col-md-6" style="padding-bottom: 18px;">
-				<img class="" src="{{ asset('images/monografi.svg') }}" alt="visi & misi" />
+				<img class="" src="{{ asset('images/monografi-1.svg') }}" alt="monografi" />
 			</div>
 			<div class="col-md-6" style="padding-bottom: 18px;">
 				<div class="about-intro-text">
@@ -884,13 +884,13 @@
 				</div>
             </div>
             <div class="col-md-6" style="padding-bottom: 18px;">
-				<img class="" src="{{ asset('images/monografi.svg') }}" alt="visi & misi" />
+				<img class="" src="{{ asset('images/monografi-2.svg') }}" alt="visi & misi" />
 			</div>
 		</div>
         <br>
         <div class="row">
             <div class="col-md-6" style="padding-bottom: 18px;">
-                <img class="" src="{{ asset('images/monografi.svg') }}" alt="visi & misi" />
+                <img class="" src="{{ asset('images/monografi-3.svg') }}" alt="monografi" />
             </div>
 			<div class="col-md-6" style="padding-bottom: 18px;">
 				<div class="about-intro-text">

@@ -98,6 +98,10 @@
                                     </li>
                                 {{-- @endif --}}
 
+                                <li class="nav-item {{ request()->is('admin/district/organizational-structure/*') ? 'active' : ''}} ">
+                                    <a href="{{ route('admin.district.organizationalStructure.index') }}">Struktur Organisasi</a>
+                                </li>
+
                                 <li class="nav-item {{ request()->is('admin/district/employee/*') ? 'active' : '' }} ">
                                     <a href="{{ route('admin.district.employee.index') }}">Kepegawaian</a>
                                 </li>

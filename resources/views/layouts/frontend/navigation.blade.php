@@ -35,7 +35,7 @@
 						<li class="{{ request()->is('profil/lakip') ? 'active' : '' }}"><a href="{{ route('profil.lakip') }}">Data Lakip</a></li>
 						<li class="{{ request()->is('profil/monografi') ? 'active' : '' }}"><a href="{{ route('profil.monograph') }}">Monografi Kecamatan</a></li>
 						<li class="{{ request()->is('profil/visi-misi') ? 'active' : '' }}"><a href="{{ route('profil.visionMission') }}">Visi & Misi</a></li>
-						<li><a href="#">Struktur Organisasi</a></li>
+						<li class="{{ request()->is('profil/struktur-organisais') ? 'active' : '' }}"><a href="{{ route('profil.organizationalStructure') }}">Struktur Organisasi</a></li>
 						<li class="{{ request()->is('profil/kepegawaian') ? 'active' : '' }}"><a href="{{ route('profil.employee') }}">Kepegawaian</a></li>
 						<li><a href="#">Galeri Foto</a></li>
 					</ul>
@@ -64,12 +64,12 @@
 										<ul class="menu-col">
 											<li><a href="#">Pelayanan KTP</a></li>
 											<li><a href="#">Pelayanan KK (Kartu Keluarga)</a></li>
-											<li><a href="#">Surat Keterangan Domisili Perusahaan</a></li>
-											<li><a href="#">Surat Keterangan Domisili Yayasan</a></li>
-											<li><a href="#">Surat Pengantar Pindah Ke Luar Negeri</a></li>
-											<li><a href="#">Pelayanan Rekomendasi IMB</a></li>
-											<li><a href="#">Surat Keterangan Tidak Mampu</a></li>
-											<li><a href="#">Surat Pengantar Perubahan Data Kependudukan</a></li>
+											<li><a href="{{ route('surat-keterangan-domisili-perusahaan') }}">Surat Keterangan Domisili Perusahaan</a></li>
+											<li><a href="{{ route('surat-keterangan-domisili-yayasan') }}">Surat Keterangan Domisili Yayasan</a></li>
+											<li><a href="{{ route('surat-pengantar-pindah-ke-luar-negeri') }}">Surat Pengantar Pindah Ke Luar Negeri</a></li>
+											<li><a href="{{ route('pelayanan-rekomendasi-imb') }}">Pelayanan Rekomendasi IMB</a></li>
+											<li><a href="{{ route('surat-keterangan_tidak-mampu') }}">Surat Keterangan Tidak Mampu</a></li>
+											<li><a href="{{ route('surat-pengantar-perubahan-data-kependudukan') }}">Surat Pengantar Perubahan Data Kependudukan</a></li>
 										</ul>
 									</div>
 								</div>

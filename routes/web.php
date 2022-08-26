@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\DistrictMonographController;
 use App\Http\Controllers\Admin\UrbanVillagePotencyController;
 use App\Http\Controllers\Admin\UrbanVillageEmployeeController;
 use App\Http\Controllers\Admin\UrbanVillageMonographController;
+use App\Http\Controllers\Admin\OrganizationalStructureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,21 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil/lakip', [HomeController::class, 'lakip'])->name('profil.lakip');
 Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('profil.monograph');
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
+Route::get('/profil/struktur-organisasi', [HomeController::class, 'organizational_structure'])->name('profil.organizationalStructure');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
 Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
 Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');
+/** Layanan */
+Route::prefix('layanan')->group(function () {
+    Route::get('/surat-keterangan-domisili-perusahaan', [HomeController::class, 'surat_keterangan_domisili_perusahaan'])->name('surat-keterangan-domisili-perusahaan');
+    Route::get('/surat-keterangan-domisili-yayasan', [HomeController::class, 'surat_keterangan_domisili_yayasan'])->name('surat-keterangan-domisili-yayasan');
+    Route::get('/surat-pengantar-pindah-ke-luar-negeri', [HomeController::class, 'surat_pengantar_pindah_ke_luar_negeri'])->name('surat-pengantar-pindah-ke-luar-negeri');
+    Route::get('/pelayanan-rekomendasi-imb', [HomeController::class, 'pelayanan_rekomendasi_imb'])->name('pelayanan-rekomendasi-imb');
+    Route::get('/surat-keterangan_tidak-mampu', [HomeController::class, 'surat_keterangan_tidak_mampu'])->name('surat-keterangan_tidak-mampu');
+    Route::get('/surat-pengantar-perubahan-data-kependudukan', [HomeController::class, 'surat_pengantar_perubahan_data_kependudukan'])->name('surat-pengantar-perubahan-data-kependudukan');
+});
 
 Auth::routes();
 
@@ -113,6 +124,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/index', [VisionMissionController::class, 'index'])->name('admin.district.visionMission.index');
             Route::get('/{id}/edit', [VisionMissionController::class, 'edit'])->name('admin.district.visionMission.edit');
             Route::post('/update', [VisionMissionController::class, 'update'])->name('admin.district.visionMission.update');
+        });
+
+        /** Organizational Structure */
+        Route::group(['prefix' => 'organizational-structure'], function () {
+            Route::get('/index', [OrganizationalStructureController::class, 'index'])->name('admin.district.organizationalStructure.index');
+            Route::get('/{id}/edit', [OrganizationalStructureController::class, 'edit'])->name('admin.district.organizationalStructure.edit');
+            Route::post('/update', [OrganizationalStructureController::class, 'update'])->name('admin.district.organizationalStructure.update');
         });
 
         /** Employee */

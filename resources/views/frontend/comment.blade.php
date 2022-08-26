@@ -1,6 +1,42 @@
 @extends('layouts.frontend.master')
 
 @section('content')
+<style>
+    blockquote {
+        font-family: Georgia, serif;
+        position: relative;
+        margin: 0.5em;
+        padding: 0.5em 2em 0.5em 3em;
+    }
+    /* Thanks: http://callmenick.com/post/styling-blockquotes-with-css-pseudo-classes */
+    blockquote:before {
+        font-family: Georgia, serif;
+        position: absolute;
+        font-size: 6em;
+        line-height: 1;
+        top: 0;
+        left: 0;
+        content: "\201C";
+    }
+    blockquote:after {
+        font-family: Georgia, serif;
+        position: absolute;
+    /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
+        float:right;
+        font-size:6em;
+        line-height: 1;
+        right:0;
+        bottom:-0.5em;
+        content: "\201D";
+    }
+    blockquote footer {
+        padding: 0 2em 0 0;
+        text-align:right;
+    }
+    blockquote cite:before {
+        content: "\2013";
+    }
+</style>
 <!-- ========== Breadcramb Start ========== -->
 <section class="breadcramb-content breadcramb-v2 pt50 pb50 parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
@@ -32,17 +68,27 @@
 			</div>
 		</div>
 		
+        <div style="margin-bottom: 70px;">
+            <blockquote>
+                Kami memiliki komitmen untuk memberikan layanan terbaik kepada Masyarakat. Apabila untuk alasan tertentu Anda merasa tidak puas dengan pelayanan kami, Anda dapat menyampaikan kritik dan saran kepada kami untuk ditindaklanjuti agar masalah tidak terulang kembali. 
+            <footer>
+                <cite>
+                    Kecamatan Cimahi Tengah
+                </cite>
+            </footer>
+            </blockquote>
+        </div>
+
 		<div class="row">
-			<div class="col-md-6" style="padding-bottom: 18px;">
+			<div class="col-md-6">
                 <div class="contact-form-box" style="background-color: #fff;">
-                    <p>Kami memiliki komitmen untuk memberikan layanan terbaik kepada Masyarakat. Apabila untuk alasan tertentu Anda merasa tidak puas dengan pelayanan kami, Anda dapat menyampaikan kritik dan saran kepada kami untuk ditindaklanjuti agar masalah tidak terulang kembali. </p>
                     <img class="" src="{{ asset('images/komentar.svg') }}" alt="komentar & saran" style="padding-top: 10px;"/>
                 </div>
 			</div>
-			<div class="col-md-6" style="padding-bottom: 18px;">
-				<div class="contact-form-box">
+			<div class="col-md-6">
+                <div class="contact-form-box">
                     <div class="col-sm-12 mb15">
-                        <p>Silahkan hubungi kami melalui form di bawah ini. Kritik dan saran Anda sangat penting bagi kami untuk terus meningkatkan kualitas produk dan layanan yang kami untuk Anda..</p>
+                        <p style="text-align: center;">Silahkan hubungi kami melalui form di bawah ini. Kritik dan saran Anda sangat penting bagi kami untuk terus meningkatkan kualitas produk dan layanan yang kami untuk Anda..</p>
                     </div>
                     <form id="comment-form">
                         <div class="message col-xs-12">
@@ -50,14 +96,14 @@
                             <p class="email-success"><i class="icon icon-icon-check-alt2"></i> Pesan anda berhasil terkirim.</p>
                             <p class="email-failed"><i class="icon icon-icon-close-alt2"></i> Terjadi kesalahan!</p>
                         </div>
-
+        
                         <div class="col-sm-12 mb13">
                             <input name="name" class="contact-name" id="contact-name" type="text" placeholder="Nama anda" required="" />
                         </div>
-                        <div class="col-sm-12 mb13">
+                        <div class="col-sm-6 mb13">
                             <input name="email" class="contact-email" id="contact-email" type="email" placeholder="Email anda" required="" />
                         </div>
-                        <div class="col-sm-12 mb13">
+                        <div class="col-sm-6 mb13">
                             <input name="subject" class="contact-subject" id="contact-subject" type="text" placeholder="Subjek" required="" />
                         </div>
                         <div class="col-sm-12 mb30">

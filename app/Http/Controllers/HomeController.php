@@ -14,6 +14,7 @@ use App\Models\MediaSocial;
 use App\Models\VisionMission;
 use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
+use App\Models\OrganizationalStructure;
 
 class HomeController extends Controller
 {
@@ -56,6 +57,12 @@ class HomeController extends Controller
         return view('frontend.vision-mission', compact('vm'));
     }
 
+    public function organizational_structure()
+    {
+        $org = OrganizationalStructure::get();
+        return view('frontend.organizational-structure', compact('org'));
+    }
+
     public function employee()
     {
         $employee = DistrictEmployee::orderBy('id')->get();
@@ -94,4 +101,36 @@ class HomeController extends Controller
         }
 
     }
+
+    /** Layanan Start */
+    public function surat_keterangan_domisili_perusahaan()
+    {
+        return view('frontend.layanan.surat-keterangan-domisili-perusahaan');
+    }
+    
+    public function surat_keterangan_domisili_yayasan()
+    {
+        return view('frontend.layanan.surat-keterangan-domisili-yayasan');
+    }
+    
+    public function surat_pengantar_pindah_ke_luar_negeri()
+    {
+        return view('frontend.layanan.surat-pengantar-pindah-ke-luar-negeri');
+    }
+    
+    public function pelayanan_rekomendasi_imb()
+    {
+        return view('frontend.layanan.pelayanan-rekomendasi-imb');
+    }
+
+    public function surat_keterangan_tidak_mampu()
+    {
+        return view('frontend.layanan.surat-keterangan-tidak-mampu');
+    }
+    
+    public function surat_pengantar_perubahan_data_kependudukan()
+    {
+        return view('frontend.layanan.surat-pengantar-perubahan-data-kependudukan');
+    }
+    /** Layanan End */
 }
