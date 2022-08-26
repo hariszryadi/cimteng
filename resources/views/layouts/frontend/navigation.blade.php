@@ -35,20 +35,17 @@
 						<li class="{{ request()->is('profil/lakip') ? 'active' : '' }}"><a href="{{ route('profil.lakip') }}">Data Lakip</a></li>
 						<li class="{{ request()->is('profil/monografi') ? 'active' : '' }}"><a href="{{ route('profil.monograph') }}">Monografi Kecamatan</a></li>
 						<li class="{{ request()->is('profil/visi-misi') ? 'active' : '' }}"><a href="{{ route('profil.visionMission') }}">Visi & Misi</a></li>
-						<li class="{{ request()->is('profil/struktur-organisais') ? 'active' : '' }}"><a href="{{ route('profil.organizationalStructure') }}">Struktur Organisasi</a></li>
+						<li class="{{ request()->is('profil/struktur-organisasi') ? 'active' : '' }}"><a href="{{ route('profil.organizationalStructure') }}">Struktur Organisasi</a></li>
 						<li class="{{ request()->is('profil/kepegawaian') ? 'active' : '' }}"><a href="{{ route('profil.employee') }}">Kepegawaian</a></li>
 						<li><a href="#">Galeri Foto</a></li>
 					</ul>
 				</li>
-				<li class="dropdown">
+				<li class="dropdown {{ request()->is('kelurahan/*') ? 'active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Kelurahan</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Baros</a></li>
-						<li><a href="#">Cigugur Tengah</a></li>
-						<li><a href="#">Cimahi</a></li>
-						<li><a href="#">Karang Mekar</a></li>
-						<li><a href="#">Padasuka</a></li>
-						<li><a href="#">Setiamanah</a></li>
+						@foreach ($urban_village as $item)
+							<li class="{{ request()->is('kelurahan/'.$item->slug) ? 'active' : '' }}"><a href="{{ route('urban-village', ['kelurahan' => $item->slug]) }}">{{ $item->name }}</a></li>
+						@endforeach
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -132,7 +129,7 @@
 						<li class="{{ request()->is('iumk') ? 'active' : '' }}"><a href="{{ route('iumk') }}">IUMK</a></li>
 					</ul>
 				</li>
-				<li class="dropdown {{ request()->is('comment') ? 'active' : '' }}">
+				<li class="dropdown {{ request()->is('komentar-saran') ? 'active' : '' }}">
 					<a href="{{ route('comment') }}" class="">Komentar & Saran</a>
 				</li>
             </ul>

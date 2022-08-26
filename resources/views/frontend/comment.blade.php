@@ -41,10 +41,7 @@
 <section class="breadcramb-content breadcramb-v2 pt50 pb50 parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
-				<h3>KOMENTAR & SARAN</h3>
-			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<ul>
 					<li><a href="{{ route('home') }}">Beranda</a></li>
 					<li>Komentar & Saran</li>
@@ -98,13 +95,13 @@
                         </div>
         
                         <div class="col-sm-12 mb13">
-                            <input name="name" class="contact-name" id="contact-name" type="text" placeholder="Nama anda" required="" />
+                            <input name="name" class="contact-name" id="contact-name" type="text" placeholder="Nama anda" required="" autocomplete="off"/>
                         </div>
                         <div class="col-sm-6 mb13">
-                            <input name="email" class="contact-email" id="contact-email" type="email" placeholder="Email anda" required="" />
+                            <input name="email" class="contact-email" id="contact-email" type="email" placeholder="Email anda" required="" autocomplete="off"/>
                         </div>
                         <div class="col-sm-6 mb13">
-                            <input name="subject" class="contact-subject" id="contact-subject" type="text" placeholder="Subjek" required="" />
+                            <input name="subject" class="contact-subject" id="contact-subject" type="text" placeholder="Subjek" required="" autocomplete="off"/>
                         </div>
                         <div class="col-sm-12 mb30">
                             <textarea name="comment" class="contact-message" id="contact-message" placeholder="Pesan anda" required=""></textarea>

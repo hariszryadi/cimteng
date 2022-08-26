@@ -29,10 +29,7 @@
 <section class="breadcramb-content breadcramb-v2 pt50 pb50 parallax-bg color-overlay" style="background-image:url({{ asset('images/cimteng.jpeg') }})">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
-				<h3>KEPEGAWAIAN</h3>
-			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<ul>
 					<li><a href="{{ route('home') }}">Beranda</a></li>
 					<li>Kepegawaian</li>

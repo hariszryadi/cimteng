@@ -11,6 +11,7 @@ use App\Models\Banner;
 use App\Models\Comment;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
+use App\Models\UrbanVillage;
 use App\Models\VisionMission;
 use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
@@ -21,7 +22,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $medsos = MediaSocial::get();
+        $urban_village = UrbanVillage::orderBy('id')->get();
         view()->share('medsos', $medsos);
+        view()->share('urban_village', $urban_village);
     }
 
     /**
@@ -67,6 +70,13 @@ class HomeController extends Controller
     {
         $employee = DistrictEmployee::orderBy('id')->get();
         return view('frontend.employee', compact('employee'));
+    }
+
+    public function urban_village($slug)
+    {
+        $uv = UrbanVillage::with('monograph')->where('slug', $slug)->first();
+        // return dd($uv->monograph->shm);
+        return view('frontend.urban-village', compact('uv'));
     }
 
     public function e_layanan() 

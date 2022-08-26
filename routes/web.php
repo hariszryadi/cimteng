@@ -39,6 +39,7 @@ Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('pro
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 Route::get('/profil/struktur-organisasi', [HomeController::class, 'organizational_structure'])->name('profil.organizationalStructure');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
+Route::get('/kelurahan/{kelurahan}', [HomeController::class, 'urban_village'])->name('urban-village');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
 Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
