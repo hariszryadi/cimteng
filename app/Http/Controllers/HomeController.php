@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Models\Lakip;
 use App\Models\Banner;
 use App\Models\Comment;
+use App\Models\Service;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
 use App\Models\UrbanVillage;
@@ -75,8 +76,19 @@ class HomeController extends Controller
     public function urban_village($slug)
     {
         $uv = UrbanVillage::with('monograph')->where('slug', $slug)->first();
-        // return dd($uv->monograph->shm);
         return view('frontend.urban-village', compact('uv'));
+    }
+
+    public function service()
+    {
+        $service = Service::orderBy('id')->get();
+        return view('frontend.service', compact('service'));
+    }
+
+    public function get_service(Request $request)
+    {
+        $service = Service::find($request->id);
+        return response()->json(['data' => $service]);
     }
 
     public function e_layanan() 

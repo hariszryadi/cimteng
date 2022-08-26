@@ -127,6 +127,12 @@
                         </li>
                     {{-- @endif --}}
 
+                    <li class="nav-item {{ request()->is('admin/service/*') ? 'active' : '' }} ">
+                        <a href="{{ route('admin.service.index') }}" class="nav-link"><i class="icon-user-check"></i>
+                            <span>Layanan</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }} ">
                         <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-share3"></i>
                             <span>Media Sosial</span>

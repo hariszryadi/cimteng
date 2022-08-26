@@ -15,7 +15,7 @@
 	</div>
 </section>
 <!-- ========== Breadcramb End ========== -->
-<!-- Lakip Start -->
+<!-- E-layanan Start -->
 <section class="section-padding white-bg">
 	<div class="container">
 		<div class="row">
@@ -56,5 +56,5 @@
 		</div>
 	</div>
 </section>
-<!-- Lakip End -->
+<!-- E-layanan End -->
 @endsection

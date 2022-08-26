@@ -51,68 +51,8 @@
 				<li class="dropdown">
 					<a href="#" class="" data-toggle="dropdown" >Berita</a>
 				</li>
-				<li class="dropdown megamenu-fw">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Layanan</a>
-					<ul class="dropdown-menu megamenu-content" role="menu">
-						<li>
-							<div class="row">
-								<div class="col-menu col-md-3">
-									<div class="content">
-										<ul class="menu-col">
-											<li><a href="#">Pelayanan KTP</a></li>
-											<li><a href="#">Pelayanan KK (Kartu Keluarga)</a></li>
-											<li><a href="{{ route('surat-keterangan-domisili-perusahaan') }}">Surat Keterangan Domisili Perusahaan</a></li>
-											<li><a href="{{ route('surat-keterangan-domisili-yayasan') }}">Surat Keterangan Domisili Yayasan</a></li>
-											<li><a href="{{ route('surat-pengantar-pindah-ke-luar-negeri') }}">Surat Pengantar Pindah Ke Luar Negeri</a></li>
-											<li><a href="{{ route('pelayanan-rekomendasi-imb') }}">Pelayanan Rekomendasi IMB</a></li>
-											<li><a href="{{ route('surat-keterangan_tidak-mampu') }}">Surat Keterangan Tidak Mampu</a></li>
-											<li><a href="{{ route('surat-pengantar-perubahan-data-kependudukan') }}">Surat Pengantar Perubahan Data Kependudukan</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-menu col-md-3">
-									<div class="content">
-										<ul class="menu-col">
-											<li><a href="#">Surat Keterangan Pindah Antar Kecamatan</a></li>
-											<li><a href="#">Legalisir KK/KTP</a></li>
-											<li><a href="#">Surat Keterangan Orang Yang Sama</a></li>
-											<li><a href="#">Surat Pengantar Pindah Ke Luar Kota</a></li>
-											<li><a href="#">Surat Keterangan Menetap</a></li>
-											<li><a href="#">Surat Keterangan Kelahiran</a></li>
-											<li><a href="#">Surat Keterangan / Legalisir Ahli Waris</a></li>
-										</ul>
-									</div>
-								</div>  
-								<div class="col-menu col-md-3">
-									<div class="content">
-										<ul class="menu-col">
-											<li><a href="#">Pelayanan Akta Jual Beli (Langsung Ke Camat)</a></li>
-											<li><a href="#">Pelayanan Surat Keterangan Ahli Waris Langsung</a></li>
-											<li><a href="#">Surat Keterangan Tanggungan / Susunan Keluarga</a></li>
-											<li><a href="#">Surat Keterangan Belum Menikah</a></li>
-											<li><a href="#">Surat Keterangan Usaha</a></li>
-											<li><a href="#">Izin Usaha Mikro</a></li>
-											<li><a href="#">Surat Izin Keramaian</a></li>
-										</ul>
-									</div>
-								</div>    
-
-								<div class="col-menu col-md-3">
-									<div class="content">
-										<ul class="menu-col">
-											<li><a href="#">Surat Keterangan Bersih Diri</a></li>
-											<li><a href="#">Surat Keterangan Catatan Kepolisian</a></li>
-											<li><a href="#">Surat Keterangan Domisili Partai</a></li>
-											<li><a href="#">Surat Keterangan Domisili Haji</a></li>
-											<li><a href="#">Surat Pengajuan Dan Perpanjang Izin Operasional</a></li>
-											<li><a href="#">Surat Rekomendasi Pembangunan / Renovasi Masjid</a></li>
-											<li><a href="#">Surat Rekomendasi Kegiatan Masyarakat</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
+				<li class="dropdown {{ request()->is('layanan') ? 'active' : '' }}">
+					<a href="{{ route('service') }}" class="">Layanan</a>
 				</li>
 				<li class="dropdown {{ request()->is('e-layanan') ? 'active' : '' }}">
 					<a href="{{ route('e-layanan') }}" class="">E-Layanan</a>

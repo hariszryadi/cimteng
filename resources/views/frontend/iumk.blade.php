@@ -31,7 +31,7 @@
 	</div>
 </section>
 <!-- ========== Breadcramb End ========== -->
-<!-- Visi Misi Start -->
+<!-- IUMK Start -->
 <section class="section-padding white-bg">
 	<div class="container">
 		<div class="row">
@@ -80,7 +80,7 @@
 		</div>
 	</div>
 </section>
-<!-- Visi Misi End -->
+<!-- IUMK End -->
 @endsection
 
 @section('scripts')

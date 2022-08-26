@@ -99,6 +99,7 @@
                     $.setupValidation(config);
                 }
             });
+            
             $("input[type=file]").on("change", function (e) {
                 if (this.files[0].size > 2097152) {
                     bootbox.alert('Upload file max 2 MB');

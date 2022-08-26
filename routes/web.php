@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\IumkController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LakipController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\Cms\NewsController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -40,19 +41,12 @@ Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name
 Route::get('/profil/struktur-organisasi', [HomeController::class, 'organizational_structure'])->name('profil.organizationalStructure');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
 Route::get('/kelurahan/{kelurahan}', [HomeController::class, 'urban_village'])->name('urban-village');
+Route::get('/layanan', [HomeController::class, 'service'])->name('service');
+Route::post('/layanan', [HomeController::class, 'get_service'])->name('get-service');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
 Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
 Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');
-/** Layanan */
-Route::prefix('layanan')->group(function () {
-    Route::get('/surat-keterangan-domisili-perusahaan', [HomeController::class, 'surat_keterangan_domisili_perusahaan'])->name('surat-keterangan-domisili-perusahaan');
-    Route::get('/surat-keterangan-domisili-yayasan', [HomeController::class, 'surat_keterangan_domisili_yayasan'])->name('surat-keterangan-domisili-yayasan');
-    Route::get('/surat-pengantar-pindah-ke-luar-negeri', [HomeController::class, 'surat_pengantar_pindah_ke_luar_negeri'])->name('surat-pengantar-pindah-ke-luar-negeri');
-    Route::get('/pelayanan-rekomendasi-imb', [HomeController::class, 'pelayanan_rekomendasi_imb'])->name('pelayanan-rekomendasi-imb');
-    Route::get('/surat-keterangan_tidak-mampu', [HomeController::class, 'surat_keterangan_tidak_mampu'])->name('surat-keterangan_tidak-mampu');
-    Route::get('/surat-pengantar-perubahan-data-kependudukan', [HomeController::class, 'surat_pengantar_perubahan_data_kependudukan'])->name('surat-pengantar-perubahan-data-kependudukan');
-});
 
 Auth::routes();
 
@@ -173,6 +167,16 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update', [UrbanVillagePotencyController::class, 'update'])->name('admin.urbanVillage.potency.update');
             Route::post('/destroy', [UrbanVillagePotencyController::class, 'destroy'])->name('admin.urbanVillage.potency.destroy');
         });
+    });
+
+    /** Service */
+    Route::group(['prefix' => 'service'], function () {
+        Route::get('/index', [ServiceController::class, 'index'])->name('admin.service.index');
+        Route::get('/create', [ServiceController::class, 'create'])->name('admin.service.create');
+        Route::post('/store', [ServiceController::class, 'store'])->name('admin.service.store');
+        Route::get('/{id}/edit', [ServiceController::class, 'edit'])->name('admin.service.edit');
+        Route::post('/update', [ServiceController::class, 'update'])->name('admin.service.update');
+        Route::post('/destroy', [ServiceController::class, 'destroy'])->name('admin.service.destroy');
     });
 
     /** Media Social */

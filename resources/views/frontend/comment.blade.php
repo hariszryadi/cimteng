@@ -51,7 +51,7 @@
 	</div>
 </section>
 <!-- ========== Breadcramb End ========== -->
-<!-- Visi Misi Start -->
+<!-- Komentar & Saran Start -->
 <section class="section-padding white-bg">
 	<div class="container">
 		<div class="row">
@@ -115,7 +115,7 @@
 		</div>
 	</div>
 </section>
-<!-- Visi Misi End -->
+<!-- Komentar & Saran End -->
 @endsection
 
 @section('scripts')
