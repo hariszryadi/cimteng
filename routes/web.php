@@ -35,6 +35,22 @@ use App\Http\Controllers\Admin\OrganizationalStructureController;
 |
 */
 
+use App\Models\Visitor;
+
+$unique_ip = true;
+$visitors = Visitor::all();
+foreach($visitors as $visitor){
+    if($visitor->ip == request()->ip()){
+        $unique_ip = false;
+    }
+}
+if($unique_ip == true){
+    $visitor = Visitor::create([
+        'ip' => request()->ip(),
+        'visit_date' => date('Y-m-d')
+    ]);
+}
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil/lakip', [HomeController::class, 'lakip'])->name('profil.lakip');
 Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('profil.monograph');

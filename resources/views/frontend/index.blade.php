@@ -27,8 +27,10 @@
 				<div class="col-md-6 pull-right">
 					<div class="inner">
 						<h2 class="section-heading">Sambutan Camat Cimahi Tengah</h2>
-						{!! $greeting[0]->content !!}
-						<a class="waves-effect waves-light">Baca selengkapnya</a>
+						<div class="greeting-content">
+							{!! $greeting[0]->content !!}
+						</div>
+						<a href="#" class="waves-effect waves-light">Baca selengkapnya</a>
 					</div>
 				</div>
 			</div>
@@ -204,28 +206,28 @@
 		<div class="row">
 			<div class="col-md-3 col-sm-6">
 				<div class="single-fact text-center mb-xs-30 mb-sm-30">
-					<h6 class="counter">10201</h6>
+					<h6 class="counter">{{ $today }}</h6>
 					<div class="section-divider divider-dashed"></div>
 					<h6>Hari Ini</h6>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="single-fact text-center mb-xs-30 mb-sm-30">
-					<h6 class="counter">30488</h6>
+					<h6 class="counter">{{ $this_week }}</h6>
 					<div class="section-divider divider-dashed"></div>
 					<h6>Minggu Ini</h6>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="single-fact text-center mb-xs-30 mb-sm-30">
-					<h6 class="counter">950</h6>
+					<h6 class="counter">{{ $this_month }}</h6>
 					<div class="section-divider divider-dashed"></div>
-					<h6>Bula Ini</h6>
+					<h6>Bulan Ini</h6>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6">
 				<div class="single-fact text-center mb-xs-30 mb-sm-30">
-					<h6 class="counter">25004</h6>
+					<h6 class="counter">{{ $visitor }}</h6>
 					<div class="section-divider divider-dashed"></div>
 					<h6>Total</h6>
 				</div>

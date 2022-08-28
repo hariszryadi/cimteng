@@ -49,16 +49,21 @@
     <!--	Comment out the CSS file you want to use	-->
 </head>
 <body>
+<div class="loader">
+    <div></div>
+</div>
 
-<!-- ========== Header Start ========== -->
-@include('layouts.frontend.navigation')
-<!-- ========== Header End ========== -->
-
-@yield('content')
-
-<!-- ========== Footer Start ========== -->
-@include('layouts.frontend.footer')
-<!-- ========== Footer End ========== -->
+{{-- <div class="content-wrapper"> --}}
+    <!-- ========== Header Start ========== -->
+    @include('layouts.frontend.navigation')
+    <!-- ========== Header End ========== -->
+    
+    @yield('content')
+    
+    <!-- ========== Footer Start ========== -->
+    @include('layouts.frontend.footer')
+    <!-- ========== Footer End ========== -->
+{{-- </div> --}}
 
 <!-- jquery -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -92,6 +97,11 @@
 <script src="{{ asset('assets/js/gmap3.js') }}"></script>
 <!-- Custom js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script>
+    $(window).on('load', function(){
+        $('.loader').fadeOut(1000);
+    })
+</script>
 
 @yield('scripts')
 </body>

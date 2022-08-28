@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Models\Lakip;
 use App\Models\Banner;
 use App\Models\Comment;
+use App\Models\Visitor;
 use App\Models\Service;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
@@ -19,6 +20,7 @@ use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
 use App\Models\OrganizationalStructure;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -37,12 +39,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $now = Carbon::now();
+        $visitor = Visitor::count();
+        $today = Visitor::where('visit_date', '=', $now->format('Y-m-d'))->count();
+        $this_week = Visitor::whereBetween('visit_date', [
+            $now->startOfWeek()->format('Y-m-d'),
+            $now->endOfWeek()->format('Y-m-d')
+         ])->count();
+        $this_month = Visitor::whereMonth('visit_date', '=', date('m'))->count();
         $greeting = Greeting::get();
         $banners = Banner::where('status', '1')->orderBy('id')->get();
         $videos = Video::where('status', '1')->orderBy('id')->get();
         $news = News::where('status', '1')->orderBy('id')->get();
         
-        return view('frontend.index', compact('greeting', 'banners', 'videos', 'news'));
+        return view('frontend.index', compact('visitor', 'today', 'this_week', 'this_month', 'greeting', 'banners', 'videos', 'news'));
     }
 
     public function lakip()
