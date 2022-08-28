@@ -3497,7 +3497,10 @@ ul.comment-list:not(.browser-default) {
 }
 
 .img-news {
-	height: 175px;
+	width: 100%; 
+	height: 175px; 
+	object-fit: cover; 
+	overflow: hidden;
 }
 
 .content-wrap {

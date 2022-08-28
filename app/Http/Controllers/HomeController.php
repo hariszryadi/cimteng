@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function urban_village($slug)
     {
-        $uv = UrbanVillage::with('monograph')->where('slug', $slug)->first();
+        $uv = UrbanVillage::with('monograph', 'employee', 'potency')->where('slug', $slug)->first();
         return view('frontend.urban-village', compact('uv'));
     }
 
@@ -97,6 +97,18 @@ class HomeController extends Controller
     {
         $service = Service::orderBy('id')->get();
         return view('frontend.service', compact('service'));
+    }
+
+    public function news()
+    {
+        $news = News::where('status', '1')->orderBy('id', 'desc')->get();
+        return view('frontend.news', compact('news'));
+    }
+    
+    public function detail_news($id)
+    {
+        $news = News::where('id', Crypt::decrypt($id))->first();
+        return view('frontend.detail-news', compact('news'));
     }
 
     public function get_service(Request $request)

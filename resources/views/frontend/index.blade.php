@@ -55,20 +55,17 @@
 				<div class="clients-carousel owl-carousel owl-theme">
 					@foreach ($news as $item)
 						<div class="each-box">
-							<div class="inner white-bg text-center">
+							<div class="inner white-bg">
 								<img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="img-responsive img-news">
-								<div class="detail" style="height: 350px;">
-									<a href="#" title="{{ $item->title }}"><p class="news-title">{{ $item->title }}</p></a>
+								<div class="detail">
+									<a href="{{ route('detailNews', ['id' => Crypt::encrypt($item->id)]) }}" title="{{ $item->title }}"><p class="news-title">{{ $item->title }}</p></a>
 									@php
 										$date = $item->created_at;
 										$date->settings(['formatFunction' => 'translatedFormat']);
 									@endphp
 									<p class="news-date"><i class="fa fa-calendar"></i>&nbsp;{{ $date->format('l, j F Y ') }}&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ $date->format('H:i') }}</p>
-									<div class="news-content">
-										<p>{!! $item->content !!}</p>
-									</div>
 									<div class="text-right">
-										<a href="#">Baca selengkapnya</a>
+										<a href="{{ route('detailNews', ['id' => Crypt::encrypt($item->id)]) }}">Lihat Berita</a>
 									</div>
 								</div>
 							</div> <!-- End: .inner -->

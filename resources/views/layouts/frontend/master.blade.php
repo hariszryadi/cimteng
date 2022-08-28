@@ -10,7 +10,7 @@
     <!-- ========== Title ========== -->
     <title>Selamat Datang di Website Resmi Kecamatan Cimahi Tengah</title>
     <!-- ========== Favicon Ico ========== -->
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <!-- ========== STYLESHEETS ========== -->
     <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">

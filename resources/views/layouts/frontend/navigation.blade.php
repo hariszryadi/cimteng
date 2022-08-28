@@ -48,8 +48,8 @@
 						@endforeach
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="" data-toggle="dropdown" >Berita</a>
+				<li class="dropdown {{ request()->is('berita') || request()->is('berita/*') ? 'active' : '' }}">
+					<a href="{{ route('news') }}" class="">Berita</a>
 				</li>
 				<li class="dropdown {{ request()->is('layanan') ? 'active' : '' }}">
 					<a href="{{ route('service') }}" class="">Layanan</a>

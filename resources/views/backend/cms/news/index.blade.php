@@ -42,7 +42,7 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Gambar</th>
-                        <th>Konten</th>
+                        {{-- <th>Konten</th> --}}
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -91,14 +91,14 @@
                         },
                         orderable: false
                     },
-                    {
-                        data: "content", 
-                        name: "content",
-                        render: function (data, type, full, meta) {
-                            return $("<div/>").html(data).text(); 
-                        }, 
-                        orderable: false
-                    },
+                    // {
+                    //     data: "content", 
+                    //     name: "content",
+                    //     render: function (data, type, full, meta) {
+                    //         return $("<div/>").html(data).text(); 
+                    //     }, 
+                    //     orderable: false
+                    // },
                     {
                         data: "status", 
                         name: "status",
@@ -116,8 +116,8 @@
                 columnDefs: [
                     { width: "5%", "targets": [0] },
                     { width: "25%", "targets": [1, 2] },
-                    { width: "10%", "targets": [4] },
-                    { className: "text-center", "targets": [2, 4] }
+                    { width: "10%", "targets": [3, 4] },
+                    { className: "text-center", "targets": [2, 3, 4] }
                 ],
                 "fnDrawCallback": function() {
                     $('.switch').bootstrapToggle({

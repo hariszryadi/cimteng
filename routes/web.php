@@ -44,6 +44,8 @@ Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('pr
 Route::get('/profil/galeri-foto', [HomeController::class, 'gallery_photo'])->name('profil.galleryPhoto');
 Route::get('/profil/galeri-foto/{id}', [HomeController::class, 'detail_gallery_photo'])->name('profil.detailGalleryPhoto');
 Route::get('/kelurahan/{kelurahan}', [HomeController::class, 'urban_village'])->name('urban-village');
+Route::get('/berita', [HomeController::class, 'news'])->name('news');
+Route::get('/berita/{id}', [HomeController::class, 'detail_news'])->name('detailNews');
 Route::get('/layanan', [HomeController::class, 'service'])->name('service');
 Route::post('/layanan', [HomeController::class, 'get_service'])->name('get-service');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
