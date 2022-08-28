@@ -87,7 +87,6 @@
 
             $(document).on('click', '#delete', function () {
                 var id = $(this).attr('data-id');
-                var avatar = $(this).attr('data-avatar');
                 swal({
                     title: "Apakah Anda Yakin Akan Menghapus Data ini?",
                     type: "warning",
@@ -102,7 +101,7 @@
                             $.ajax({
                                 url: "{{ route('admin.urbanVillage.potency.destroy') }}",
                                 method: "POST",
-                                data: {id:id, avatar:avatar},
+                                data: {id:id},
                                 success: function (resp) {
                                     $('.datatable-basic').DataTable().ajax.reload();
                                     swal('Sukses!', resp.message, 'success');

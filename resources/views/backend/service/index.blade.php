@@ -87,7 +87,6 @@
             
             $(document).on('click', '#delete', function () {
                 var id = $(this).attr('data-id');
-                var image = $(this).attr('data-image');
                 swal({
                     title: "Apakah Anda Yakin Akan Menghapus Data ini?",
                     type: "warning",

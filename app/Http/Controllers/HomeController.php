@@ -13,10 +13,12 @@ use App\Models\Service;
 use App\Models\Greeting;
 use App\Models\MediaSocial;
 use App\Models\UrbanVillage;
+use App\Models\GalleryPhoto;
 use App\Models\VisionMission;
 use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
 use App\Models\OrganizationalStructure;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -73,6 +75,18 @@ class HomeController extends Controller
         return view('frontend.employee', compact('employee'));
     }
 
+    public function gallery_photo()
+    {
+        $gallery = GalleryPhoto::where('status', '1')->orderBy('id', 'desc')->get();
+        return view('frontend.gallery-photo', compact('gallery'));
+    }
+
+    public function detail_gallery_photo($id)
+    {
+        $gallery = GalleryPhoto::with('detail')->where('id', Crypt::decrypt($id))->first();
+        return view('frontend.detail-gallery-photo', compact('gallery'));
+    }
+
     public function urban_village($slug)
     {
         $uv = UrbanVillage::with('monograph')->where('slug', $slug)->first();
@@ -123,36 +137,4 @@ class HomeController extends Controller
         }
 
     }
-
-    /** Layanan Start */
-    public function surat_keterangan_domisili_perusahaan()
-    {
-        return view('frontend.layanan.surat-keterangan-domisili-perusahaan');
-    }
-    
-    public function surat_keterangan_domisili_yayasan()
-    {
-        return view('frontend.layanan.surat-keterangan-domisili-yayasan');
-    }
-    
-    public function surat_pengantar_pindah_ke_luar_negeri()
-    {
-        return view('frontend.layanan.surat-pengantar-pindah-ke-luar-negeri');
-    }
-    
-    public function pelayanan_rekomendasi_imb()
-    {
-        return view('frontend.layanan.pelayanan-rekomendasi-imb');
-    }
-
-    public function surat_keterangan_tidak_mampu()
-    {
-        return view('frontend.layanan.surat-keterangan-tidak-mampu');
-    }
-    
-    public function surat_pengantar_perubahan_data_kependudukan()
-    {
-        return view('frontend.layanan.surat-pengantar-perubahan-data-kependudukan');
-    }
-    /** Layanan End */
 }

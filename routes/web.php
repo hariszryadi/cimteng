@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Cms\BannerController;
 use App\Http\Controllers\Admin\MediaSocialController;
 use App\Http\Controllers\Admin\TypePotencyController;
 use App\Http\Controllers\Admin\Cms\GreetingController;
+use App\Http\Controllers\Admin\GalleryPhotoController;
 use App\Http\Controllers\Admin\VisionMissionController;
 use App\Http\Controllers\Admin\DistrictEmployeeController;
 use App\Http\Controllers\Admin\DistrictMonographController;
@@ -40,6 +41,8 @@ Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('pro
 Route::get('/profil/visi-misi', [HomeController::class, 'vision_mission'])->name('profil.visionMission');
 Route::get('/profil/struktur-organisasi', [HomeController::class, 'organizational_structure'])->name('profil.organizationalStructure');
 Route::get('/profil/kepegawaian', [HomeController::class, 'employee'])->name('profil.employee');
+Route::get('/profil/galeri-foto', [HomeController::class, 'gallery_photo'])->name('profil.galleryPhoto');
+Route::get('/profil/galeri-foto/{id}', [HomeController::class, 'detail_gallery_photo'])->name('profil.detailGalleryPhoto');
 Route::get('/kelurahan/{kelurahan}', [HomeController::class, 'urban_village'])->name('urban-village');
 Route::get('/layanan', [HomeController::class, 'service'])->name('service');
 Route::post('/layanan', [HomeController::class, 'get_service'])->name('get-service');
@@ -136,6 +139,18 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/{id}/edit', [DistrictEmployeeController::class, 'edit'])->name('admin.district.employee.edit');
             Route::post('/update', [DistrictEmployeeController::class, 'update'])->name('admin.district.employee.update');
             Route::post('/destroy', [DistrictEmployeeController::class, 'destroy'])->name('admin.district.employee.destroy');
+        });
+        
+        /** Gallery Photo */
+        Route::group(['prefix' => 'gallery-photo'], function () {
+            Route::get('/index', [GalleryPhotoController::class, 'index'])->name('admin.district.galleryPhoto.index');
+            Route::get('/create', [GalleryPhotoController::class, 'create'])->name('admin.district.galleryPhoto.create');
+            Route::post('/store', [GalleryPhotoController::class, 'store'])->name('admin.district.galleryPhoto.store');
+            Route::post('show', [GalleryPhotoController::class, 'show'])->name('admin.district.galleryPhoto.show');
+            Route::get('/{id}/edit', [GalleryPhotoController::class, 'edit'])->name('admin.district.galleryPhoto.edit');
+            Route::post('/update', [GalleryPhotoController::class, 'update'])->name('admin.district.galleryPhoto.update');
+            Route::post('/destroy', [GalleryPhotoController::class, 'destroy'])->name('admin.district.galleryPhoto.destroy');
+            Route::post('/update-status', [GalleryPhotoController::class, 'update_status'])->name('admin.district.galleryPhoto.status');
         });
     });
 

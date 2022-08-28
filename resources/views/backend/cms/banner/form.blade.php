@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2">Gambar</label>
                     <div class="col-lg-10">
-                        <input type="file" class="form-control" name="image" id="image" value="{{(isset($banner) ? "$banner->image" : '')}}">
+                        <input type="file" class="form-control" name="image" id="image" value="{{(isset($banner) ? "$banner->image" : '')}}" accept=".png, .jpg, .jpeg">
                         @if ($errors->has('image'))
                             <span class="help-block text-danger">{{ $errors->first('image') }}</span>
                         @endif

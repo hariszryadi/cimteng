@@ -37,7 +37,7 @@
 						<li class="{{ request()->is('profil/visi-misi') ? 'active' : '' }}"><a href="{{ route('profil.visionMission') }}">Visi & Misi</a></li>
 						<li class="{{ request()->is('profil/struktur-organisasi') ? 'active' : '' }}"><a href="{{ route('profil.organizationalStructure') }}">Struktur Organisasi</a></li>
 						<li class="{{ request()->is('profil/kepegawaian') ? 'active' : '' }}"><a href="{{ route('profil.employee') }}">Kepegawaian</a></li>
-						<li><a href="#">Galeri Foto</a></li>
+						<li class="{{ request()->is('profil/galeri-foto') || request()->is('profil/galeri-foto/*') ? 'active' : '' }}"><a href="{{ route('profil.galleryPhoto') }}">Galeri Foto</a></li>
 					</ul>
 				</li>
 				<li class="dropdown {{ request()->is('kelurahan/*') ? 'active' : '' }}">

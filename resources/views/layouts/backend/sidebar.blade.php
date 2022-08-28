@@ -105,6 +105,10 @@
                                 <li class="nav-item {{ request()->is('admin/district/employee/*') ? 'active' : '' }} ">
                                     <a href="{{ route('admin.district.employee.index') }}">Kepegawaian</a>
                                 </li>
+                                
+                                <li class="nav-item {{ request()->is('admin/district/gallery-photo/*') ? 'active' : '' }} ">
+                                    <a href="{{ route('admin.district.galleryPhoto.index') }}">Galeri Foto</a>
+                                </li>
                             </ul>
                         </li>
                     {{-- @endif --}}

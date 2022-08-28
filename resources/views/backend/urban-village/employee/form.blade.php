@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2">Foto</label>
                     <div class="col-lg-10">
-                        <input type="file" class="form-control" name="avatar" id="avatar" value="{{(isset($employee) ? "$employee->avatar" : '')}}">
+                        <input type="file" class="form-control" name="avatar" id="avatar" value="{{(isset($employee) ? "$employee->avatar" : '')}}" accept=".png, .jpg, .jpeg">
                         @if ($errors->has('avatar'))
                             <span class="help-block text-danger">{{ $errors->first('avatar') }}</span>
                         @endif
