@@ -31,7 +31,7 @@
 		
 		<div class="row">
 			<div class="col-md-6" style="padding-bottom: 18px;">
-				<img class="" src="{{ asset('images/monografi-1.svg') }}" alt="monografi" />
+				<img class="" src="{{ asset('images/monografi-1.svg') }}" alt="Bidang Pemerintahan" />
 			</div>
 			<div class="col-md-6" style="padding-bottom: 18px;">
 				<div class="about-intro-text">
@@ -392,7 +392,7 @@
 		</div>
         <br>
 		<div class="row">
-			<div class="col-md-6" style="padding-bottom: 18px;">
+			<div class="col-md-6 desktop" style="padding-bottom: 18px;">
 				<div class="about-intro-text">
                     <p><b>B. BIDANG PEMBANGUNAN</b></p>
                     <div class="panel-group wrap" id="accordion" role="tablist" aria-multiselectable="true">
@@ -880,14 +880,505 @@
                      <!-- end of #accordion -->
 				</div>
             </div>
-            <div class="col-md-6" style="padding-bottom: 18px;">
-				<img class="" src="{{ asset('images/monografi-2.svg') }}" alt="visi & misi" />
+            <div class="col-md-6 desktop" style="padding-bottom: 18px;">
+				<img class="" src="{{ asset('images/monografi-2.svg') }}" alt="Bidang Pembangunan" />
 			</div>
+            <div class="col-md-6 mobile" style="padding-bottom: 18px; display: none;">
+				<img class="" src="{{ asset('images/monografi-2.svg') }}" alt="Bidang Pembangunan" />
+			</div>
+            <div class="col-md-6 mobile" style="padding-bottom: 18px; display: none;">
+				<div class="about-intro-text">
+                    <p><b>B. BIDANG PEMBANGUNAN</b></p>
+                    <div class="panel-group wrap" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingFive">
+                                <h4 class="panel-title">
+                                    <a class="waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                        I. AGAMA
+                                    </a>
+                                </h4>
+                            </div>
+                           <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>Jumlah Masjid</td>
+                                            <td>{{ $monograph[0]->mosque }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Mushola</td>
+                                            <td>{{ $monograph[0]->small_mosque }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Gereja</td>
+                                            <td>{{ $monograph[0]->church }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Vihara</td>
+                                            <td>{{ $monograph[0]->monastery }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Pura</td>
+                                            <td>{{ $monograph[0]->temple }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                           </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingSix">
+                                <h4 class="panel-title">
+                                    <a class="collapsed waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        II. PENDIDIKAN
+                                    </a>
+                                </h4>
+                            </div>
+                           <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                <div class="panel-body">
+                                    <p><b><i>1. Berdasarkan Gedung</i></b></p>
+                                    <p><b><i>a. Gedung Pendidikan Umum Negeri</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Gedung Kelompok Bermain Negeri</td>
+                                            <td>{{ $monograph[0]->b_play_group_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung TK Negeri</td>
+                                            <td>{{ $monograph[0]->b_tk_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SD Negeri</td>
+                                            <td>{{ $monograph[0]->b_sd_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLTP Negeri</td>
+                                            <td>{{ $monograph[0]->b_sltp_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLTA Negeri</td>
+                                            <td>{{ $monograph[0]->b_slta_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Akademi Negeri</td>
+                                            <td>{{ $monograph[0]->b_academy_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Perguruan Tinggi Negeri</td>
+                                            <td>{{ $monograph[0]->b_ptn }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>b. Gedung Pendidikan Umum Swasta</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Gedung Kelompok Bermain Swasta</td>
+                                            <td>{{ $monograph[0]->b_play_group_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung TK Swasta</td>
+                                            <td>{{ $monograph[0]->b_tk_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SD Swasta</td>
+                                            <td>{{ $monograph[0]->b_sd_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLTP Swasta</td>
+                                            <td>{{ $monograph[0]->b_sltp_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLTA Swasta</td>
+                                            <td>{{ $monograph[0]->b_slta_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Akademi Swasta</td>
+                                            <td>{{ $monograph[0]->b_academy_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Perguruan Tinggi Swasta</td>
+                                            <td>{{ $monograph[0]->b_pts }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>c. Gedung Pendidikan Khusus</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Gedung Pondok Pesantren</td>
+                                            <td>{{ $monograph[0]->b_pesantren }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Madrasah</td>
+                                            <td>{{ $monograph[0]->b_madrasah }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLB A</td>
+                                            <td>{{ $monograph[0]->b_slb_a }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLB B</td>
+                                            <td>{{ $monograph[0]->b_slb_b }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung SLB C</td>
+                                            <td>{{ $monograph[0]->b_slb_c }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Sarana Pendidikan Non Formal</td>
+                                            <td>{{ $monograph[0]->b_non_formal_edu }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung BLK (Balai Latihan Kerja)</td>
+                                            <td>{{ $monograph[0]->b_blk }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gedung Kursus</td>
+                                            <td>{{ $monograph[0]->b_course }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>2. Berdasarkan Guru</i></b></p>
+                                    <p><b><i>a. Guru Pendidikan Umum Negeri</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Guru Kelompok Bermain Negeri</td>
+                                            <td>{{ $monograph[0]->t_play_group_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru TK Negeri</td>
+                                            <td>{{ $monograph[0]->t_tk_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SD Negeri</td>
+                                            <td>{{ $monograph[0]->t_sd_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLTP Negeri</td>
+                                            <td>{{ $monograph[0]->t_sltp_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLTA Negeri</td>
+                                            <td>{{ $monograph[0]->t_slta_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Akademi Negeri</td>
+                                            <td>{{ $monograph[0]->t_academy_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Perguruan Tinggi Negeri</td>
+                                            <td>{{ $monograph[0]->t_ptn }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>b. Guru Pendidikan Umum Swasta</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Guru Kelompok Bermain Swasta</td>
+                                            <td>{{ $monograph[0]->t_play_group_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru TK Swasta</td>
+                                            <td>{{ $monograph[0]->t_tk_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SD Swasta</td>
+                                            <td>{{ $monograph[0]->t_sd_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLTP Swasta</td>
+                                            <td>{{ $monograph[0]->t_sltp_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLTA Swasta</td>
+                                            <td>{{ $monograph[0]->t_slta_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Akademi Swasta</td>
+                                            <td>{{ $monograph[0]->t_academy_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dosen Perguruan Tinggi Swasta</td>
+                                            <td>{{ $monograph[0]->t_pts }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>c. Guru Pendidikan Khusus</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Guru Pondok Pesantren</td>
+                                            <td>{{ $monograph[0]->t_pesantren }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru Madrasah</td>
+                                            <td>{{ $monograph[0]->t_madrasah }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLB A</td>
+                                            <td>{{ $monograph[0]->t_slb_a }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLB B</td>
+                                            <td>{{ $monograph[0]->t_slb_b }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru SLB C</td>
+                                            <td>{{ $monograph[0]->t_slb_c }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru Sarana Pendidikan Non Formal</td>
+                                            <td>{{ $monograph[0]->t_non_formal_edu }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru BLK (Balai Latihan Kerja)</td>
+                                            <td>{{ $monograph[0]->t_blk }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guru Kursus</td>
+                                            <td>{{ $monograph[0]->t_course }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>3. Berdasarkan Murid</i></b></p>
+                                    <p><b><i>a. Murid Pendidikan Umum Negeri</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Murid Kelompok Bermain Negeri</td>
+                                            <td>{{ $monograph[0]->s_play_group_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid TK Negeri</td>
+                                            <td>{{ $monograph[0]->s_tk_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SD Negeri</td>
+                                            <td>{{ $monograph[0]->s_sd_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLTP Negeri</td>
+                                            <td>{{ $monograph[0]->s_sltp_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLTA Negeri</td>
+                                            <td>{{ $monograph[0]->s_slta_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mahasiswa Akademi Negeri</td>
+                                            <td>{{ $monograph[0]->s_academy_public }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mahasiswa Perguruan Tinggi Negeri</td>
+                                            <td>{{ $monograph[0]->s_ptn }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>b. Murid Pendidikan Umum Swasta</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Murid Kelompok Bermain Swasta</td>
+                                            <td>{{ $monograph[0]->s_play_group_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid TK Swasta</td>
+                                            <td>{{ $monograph[0]->s_tk_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SD Swasta</td>
+                                            <td>{{ $monograph[0]->s_sd_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLTP Swasta</td>
+                                            <td>{{ $monograph[0]->s_sltp_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLTA Swasta</td>
+                                            <td>{{ $monograph[0]->s_slta_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mahasiswa Akademi Swasta</td>
+                                            <td>{{ $monograph[0]->s_academy_private }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mahasiswa Perguruan Tinggi Swasta</td>
+                                            <td>{{ $monograph[0]->s_pts }}</td>
+                                        </tr>
+                                    </table>
+                                    <p><b><i>c. Murid Pendidikan Khusus</i></b></p>
+                                    <table>
+                                        <tr>
+                                            <td>Murid Pondok Pesantren</td>
+                                            <td>{{ $monograph[0]->s_pesantren }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid Madrasah</td>
+                                            <td>{{ $monograph[0]->s_madrasah }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLB A</td>
+                                            <td>{{ $monograph[0]->s_slb_a }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLB B</td>
+                                            <td>{{ $monograph[0]->s_slb_b }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid SLB C</td>
+                                            <td>{{ $monograph[0]->s_slb_c }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid Sarana Pendidikan Non Formal</td>
+                                            <td>{{ $monograph[0]->s_non_formal_edu }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid BLK (Balai Latihan Kerja)</td>
+                                            <td>{{ $monograph[0]->s_blk }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Murid Kursus</td>
+                                            <td>{{ $monograph[0]->s_course }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                           </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingSeven">
+                                <h4 class="panel-title">
+                                    <a class="collapsed waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                        III. INDUSTRI
+                                    </a>
+                                </h4>
+                            </div>
+                           <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>Besar</td>
+                                            <td>{{ $monograph[0]->big_industry }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sedang</td>
+                                            <td>{{ $monograph[0]->medium_industry }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kecil</td>
+                                            <td>{{ $monograph[0]->small_industry }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rumah Tangga</td>
+                                            <td>{{ $monograph[0]->umkm_industry }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                           </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingEight">
+                                <h4 class="panel-title">
+                                    <a class="collapsed waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                        IV. PARIWISATA
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>Tempat Rekreasi/Hiburan</td>
+                                            <td>{{ $monograph[0]->recreation }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hotel</td>
+                                            <td>{{ $monograph[0]->hotel }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Motel</td>
+                                            <td>{{ $monograph[0]->motel }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Losmen</td>
+                                            <td>{{ $monograph[0]->losmen }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Restoran</td>
+                                            <td>{{ $monograph[0]->restaurant }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Museum Sejarah</td>
+                                            <td>{{ $monograph[0]->museum }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingNine">
+                                <h4 class="panel-title">
+                                    <a class="collapsed waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                        V. PENGAIRAN
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>Saluran Irigasi</td>
+                                            <td>{{ $monograph[0]->irrigation }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gorong-gorong</td>
+                                            <td>{{ $monograph[0]->water_tunnel }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pompa Air</td>
+                                            <td>{{ $monograph[0]->water_pump }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pembagi Air</td>
+                                            <td>{{ $monograph[0]->water_divider }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading" role="tab" id="headingTen">
+                                <h4 class="panel-title">
+                                    <a class="collapsed waves-effect" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                        VI. KELEMBAGAAN KECAMATAN
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                                <div class="panel-body">
+                                    <table>
+                                        <tr>
+                                            <td>Pengurus LPM</td>
+                                            <td>{{ $monograph[0]->lpm }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Kader Pembangunan</td>
+                                            <td>{{ $monograph[0]->development_cadre }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Tim Penggerak PKK</td>
+                                            <td>{{ $monograph[0]->pkk_team }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jumlah Kader PKK</td>
+                                            <td>{{ $monograph[0]->pkk_cadre }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of panel -->
+                     </div>
+                     <!-- end of #accordion -->
+				</div>
+            </div>
 		</div>
         <br>
         <div class="row">
             <div class="col-md-6" style="padding-bottom: 18px;">
-                <img class="" src="{{ asset('images/monografi-3.svg') }}" alt="monografi" />
+                <img class="" src="{{ asset('images/monografi-3.svg') }}" alt="Bidang Kemasyarakatan" />
             </div>
 			<div class="col-md-6" style="padding-bottom: 18px;">
 				<div class="about-intro-text">
@@ -920,4 +1411,16 @@
 	</div>
 </section>
 <!-- Monografi End -->
+@endsection
+
+@section('scripts')
+<script>
+    if ($(window).width() <= 600) {
+        $(".mobile").show();
+        $(".desktop").hide();
+    } else {
+        $(".mobile").hide();
+        $(".desktop").show();
+    }
+</script>
 @endsection
