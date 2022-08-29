@@ -107,7 +107,7 @@
                             <textarea name="comment" class="contact-message" id="contact-message" placeholder="Pesan anda" required=""></textarea>
                         </div>
                         <div class="col-sm-12">
-                            <button class="waves-effect btn waves-light btn-fill btn-small">Kirim</button>
+                            <button class="waves-effect btn waves-light btn-fill">Kirim</button>
                         </div>
                     </form>
                 </div>

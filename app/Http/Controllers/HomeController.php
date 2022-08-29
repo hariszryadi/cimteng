@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Skm;
 use App\Models\Iumk;
 use App\Models\News;
 use App\Models\Video;
@@ -12,20 +13,36 @@ use App\Models\Comment;
 use App\Models\Visitor;
 use App\Models\Service;
 use App\Models\Greeting;
+use App\Models\SkmAnswer;
 use App\Models\MediaSocial;
 use App\Models\UrbanVillage;
 use App\Models\GalleryPhoto;
 use App\Models\VisionMission;
+use App\Models\NoTelpImportant;
 use App\Models\DistrictEmployee;
 use App\Models\DistrictMonograph;
 use App\Models\OrganizationalStructure;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class HomeController extends Controller
 {
     public function __construct()
     {
+        $unique_ip = true;
+        $visitors = Visitor::all();
+        foreach($visitors as $visitor){
+            if($visitor->ip == request()->ip() && $visitor->visit_date == date('Y-m-d')){
+                $unique_ip = false;
+            }
+        }
+        if($unique_ip == true){
+            $visitor = Visitor::create([
+                'ip' => request()->ip(),
+                'visit_date' => date('Y-m-d')
+            ]);
+        }
         $medsos = MediaSocial::get();
         $urban_village = UrbanVillage::orderBy('id')->get();
         view()->share('medsos', $medsos);
@@ -51,8 +68,9 @@ class HomeController extends Controller
         $banners = Banner::where('status', '1')->orderBy('id')->get();
         $videos = Video::where('status', '1')->orderBy('id')->get();
         $news = News::where('status', '1')->orderBy('id')->get();
+        $no_telp = NoTelpImportant::orderBy('id')->get();
         
-        return view('frontend.index', compact('visitor', 'today', 'this_week', 'this_month', 'greeting', 'banners', 'videos', 'news'));
+        return view('frontend.index', compact('visitor', 'today', 'this_week', 'this_month', 'greeting', 'banners', 'videos', 'news', 'no_telp'));
     }
 
     public function lakip()
@@ -125,6 +143,44 @@ class HomeController extends Controller
     {
         $service = Service::find($request->id);
         return response()->json(['data' => $service]);
+    }
+
+    public function skm()
+    {
+        $skm = Skm::orderBy('id')->get();
+        return view('frontend.skm', compact('skm'));
+    }
+
+    public function post_skm(Request $request)
+    {
+        // return dd($request->all());
+        foreach ($request->answer as $key => $value) {
+            foreach ($value as $k => $v) {
+                SkmAnswer::create([
+                    'skm_id' => $k,
+                    'ip' => request()->ip(),
+                    'answer' => $v
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Berhasil melakukan poling');
+    }
+
+    public function result_skm()
+    {
+        $skm = DB::select("SELECT
+                    skm.id,
+                    skm.question,
+                    ( SELECT COUNT( * ) FROM skm_answers WHERE skm_id = skm.id AND answer = 1 ) AS very_good,
+                    ( SELECT COUNT( * ) FROM skm_answers WHERE skm_id = skm.id AND answer = 2 ) AS good,
+                    ( SELECT COUNT( * ) FROM skm_answers WHERE skm_id = skm.id AND answer = 3 ) AS enough,
+                    ( SELECT COUNT( * ) FROM skm_answers WHERE skm_id = skm.id AND answer = 4 ) AS not_good
+                FROM
+                    skm
+                    LEFT JOIN skm_answers ON skm.id = skm_answers.skm_id
+                    GROUP BY skm.id, skm.question");
+        return view('frontend.skm-result', compact('skm'));
     }
 
     public function e_layanan() 

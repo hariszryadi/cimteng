@@ -3626,5 +3626,5 @@ ul.comment-list:not(.browser-default) {
 			line-clamp: 4; 
 	-webkit-box-orient: vertical;
 	text-align: justify;
-	height: 120px;
+	height: 110px;
 }

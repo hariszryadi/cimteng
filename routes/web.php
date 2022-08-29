@@ -35,22 +35,6 @@ use App\Http\Controllers\Admin\OrganizationalStructureController;
 |
 */
 
-use App\Models\Visitor;
-
-$unique_ip = true;
-$visitors = Visitor::all();
-foreach($visitors as $visitor){
-    if($visitor->ip == request()->ip()){
-        $unique_ip = false;
-    }
-}
-if($unique_ip == true){
-    $visitor = Visitor::create([
-        'ip' => request()->ip(),
-        'visit_date' => date('Y-m-d')
-    ]);
-}
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil/lakip', [HomeController::class, 'lakip'])->name('profil.lakip');
 Route::get('/profil/monografi', [HomeController::class, 'monograph'])->name('profil.monograph');
@@ -65,6 +49,9 @@ Route::get('/berita/{id}', [HomeController::class, 'detail_news'])->name('detail
 Route::get('/layanan', [HomeController::class, 'service'])->name('service');
 Route::post('/layanan', [HomeController::class, 'get_service'])->name('get-service');
 Route::get('/e-layanan', [HomeController::class, 'e_layanan'])->name('e-layanan');
+Route::get('/skm', [HomeController::class, 'skm'])->name('skm');
+Route::post('/skm', [HomeController::class, 'post_skm'])->name('post.skm');
+Route::get('/skm/hasil-poling', [HomeController::class, 'result_skm'])->name('result.skm');
 Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
 Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');

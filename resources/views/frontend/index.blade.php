@@ -1,6 +1,23 @@
 @extends('layouts.frontend.master')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<style>
+    table tr td {
+        text-align: left;
+    }
+    .pagination li:first-child a, .pagination .active a, .pagination li:last-child a {
+        border: none;
+    }
+    .pagination li.active a {
+        color: #FF5D07;
+    }
+    .apt-table-wrapper thead {
+        background-color: #FF5D07;
+        color: #fff;
+    }
+</style>
+
 <!-- ========== Slider Start ========== -->
 <div class="slider fullscreen">
     <ul class="slides">
@@ -18,7 +35,7 @@
 <!-- ========== Slider End ========== -->
 
 <!-- Greeting Start -->
-<section class="section-padding gray-bg">
+<section class="section-padding white-bg">
 	<section class="features-section-2 content-half white-bg">
 		<div class="container-half container-half-left gray-bg"></div>
 		<div class="container-half container-half-left cover" style="background-image: url({{ asset('storage/'.$greeting[0]->photo) }});"></div>
@@ -168,12 +185,57 @@
 </section>
 <!-- Spacer End -->
 
-<!-- ========== Location Start ========== -->
-<section class="section-padding white-bg">
+<!-- ========== No Telp Important Start ========== -->
+<section class="section-padding gray-bg" style="padding-top: 50px !important; padding-bottom: 50px !important;">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="section-title text-center mb70">
+				<div class="section-title text-center mb30">
+					<h2>NO TELEPON PENTING</h2>
+					<p>Nomor telepon penting di wilayah Kecamatan Cimahi Tengah. </p>
+					<div class="section-divider divider-traingle"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{{ asset('images/no_telp.svg') }}" alt="No Telepon" width="60%" style="margin: 0 auto;">
+			</div>
+			<div class="col-sm-6">
+				<div class="table-responsive">
+                    <table class="table apt-table-wrapper" id="table-data">
+                        <thead>
+                            <tr>
+                                <th>Nama Instansi</th>
+                                <th>No Telepon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($no_telp as $item)
+                                <tr>
+                                    <td>{{ $item->agency }}</td>
+                                    <td>{{ $item->no_telp }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ========== No Telp Important End ========== -->
+
+<!-- ========== Location Start ========== -->
+<section class="section-padding white-bg" style="padding-top: 50px !important; padding-bottom: 50px !important;">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="section-title text-center mb30">
 					<h2>LOKASI</h2>
 					<p>Lokasi kantor Kecamatan Cimahi Tengah. </p>
 					<div class="section-divider divider-traingle"></div>
@@ -191,11 +253,11 @@
 <!-- ========== Location End ========== -->
 
 <!-- Statistic Start -->
-<section class="section-padding gray-bg">
+<section class="section-padding gray-bg" style="padding-top: 50px !important; padding-bottom: 50px !important;">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="section-title text-center mb70">
+				<div class="section-title text-center mb30">
 					<h2>Statistik Pengunjung</h2>
 					<p>Statistik pengunjung website Kecamatan Cimahi Tengah. </p>
 					<div class="section-divider divider-traingle"></div>
@@ -236,4 +298,26 @@
 	</div>
 </section>
 <!-- Statistic End -->
+@endsection
+
+@section('scripts')
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#table-data').DataTable({
+			bFilter: false,
+			bLengthChange : false,
+    		bInfo:false,
+            pageLength: 5,
+			order: [],
+            language: {
+                paginate: {
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←' 
+                }
+            }
+        });
+    });
+</script>
 @endsection

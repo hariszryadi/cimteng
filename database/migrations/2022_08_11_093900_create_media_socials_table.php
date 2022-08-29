@@ -27,10 +27,10 @@ class CreateMediaSocialsTable extends Migration
         DB::table('media_socials')->insert(
             array(
                 'email' => 'cimahitengah@gmail.com',
-                'facebook' => 'Kecamatan Cimahi Tengah',
-                'twitter' => '@cimahitengah',
+                'facebook' => 'Kec. Cimahi Tengah',
+                'twitter' => 'cimahitengah',
                 'instagram' => 'cimahitengah',
-                'youtube' => 'Kecamatan Cimahi Tengah',
+                'youtube' => 'Kec. Cimahi Tengah',
                 'created_at' => Carbon\Carbon::now()->format('Y-m-d H:i:s'),
             )
         );

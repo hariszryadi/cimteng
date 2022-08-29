@@ -60,8 +60,8 @@
 				<li class="dropdown">
 					<a href="#" class="" data-toggle="dropdown" >E-Report</a>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="" data-toggle="dropdown" >SKM</a>
+				<li class="dropdown {{ request()->is('skm') || request()->is('skm/*') ? 'active' : '' }}">
+					<a href="{{ route('skm') }}" class="">SKM</a>
 				</li>
 				<li class="dropdown {{ request()->is('iumk') ? 'active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Potensi</a>
