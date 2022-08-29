@@ -55,6 +55,7 @@ Route::get('/skm/hasil-poling', [HomeController::class, 'result_skm'])->name('re
 Route::get('/iumk', [HomeController::class, 'iumk'])->name('iumk');
 Route::get('/komentar-saran', [HomeController::class, 'comment'])->name('comment');
 Route::post('/komentar-saran', [HomeController::class, 'post_comment'])->name('post.comment');
+Route::get('/sambutan-camat', [HomeController::class, 'greeting'])->name('greeting');
 
 Auth::routes();
 

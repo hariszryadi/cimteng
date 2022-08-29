@@ -57,18 +57,18 @@
 				<li class="dropdown {{ request()->is('e-layanan') ? 'active' : '' }}">
 					<a href="{{ route('e-layanan') }}" class="">E-Layanan</a>
 				</li>
-				<li class="dropdown">
+				{{-- <li class="dropdown">
 					<a href="#" class="" data-toggle="dropdown" >E-Report</a>
-				</li>
+				</li> --}}
 				<li class="dropdown {{ request()->is('skm') || request()->is('skm/*') ? 'active' : '' }}">
 					<a href="{{ route('skm') }}" class="">SKM</a>
 				</li>
-				<li class="dropdown {{ request()->is('iumk') ? 'active' : '' }}">
+				{{-- <li class="dropdown {{ request()->is('iumk') ? 'active' : '' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Potensi</a>
 					<ul class="dropdown-menu">
 						<li class="{{ request()->is('iumk') ? 'active' : '' }}"><a href="{{ route('iumk') }}">IUMK</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				<li class="dropdown {{ request()->is('komentar-saran') ? 'active' : '' }}">
 					<a href="{{ route('comment') }}" class="">Komentar & Saran</a>
 				</li>

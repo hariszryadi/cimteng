@@ -47,7 +47,7 @@
 						<div class="greeting-content">
 							{!! $greeting[0]->content !!}
 						</div>
-						<a href="#" class="waves-effect waves-light">Baca selengkapnya</a>
+						<a href="{{ route('greeting') }}" class="waves-effect waves-light">Baca selengkapnya</a>
 					</div>
 				</div>
 			</div>
