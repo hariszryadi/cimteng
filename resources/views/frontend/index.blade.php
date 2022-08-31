@@ -156,7 +156,7 @@
 									@endphp
 									<p class="news-date"><i class="fa fa-calendar"></i>&nbsp;{{ $date->format('l, j F Y ') }}&nbsp;&nbsp;&nbsp;<i class="fa fa-clock-o"></i>&nbsp;{{ $date->format('H:i') }}</p>
 									<div class="video-description">
-										<p>{{ $item->description }}</p>
+										<p title="{{ $item->description }}">{{ $item->description }}</p>
 									</div>
 								</div>
 									

@@ -112,7 +112,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2">Deskripsi</label>
                     <div class="col-lg-10">
-                        <textarea name="description" class="form-control" id="description" cols="30" rows="5">{{(isset($video) ? "$video->description" : old('description'))}}</textarea>
+                        <textarea name="description" class="form-control" id="description" cols="30" rows="3">{{(isset($video) ? "$video->description" : old('description'))}}</textarea>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                         validation : 'required'
                     },
                     'description' : {
-                        validation : 'required, length, custom',
+                        validation : 'length, custom',
                         length : '0-255'
                     }
                 }
