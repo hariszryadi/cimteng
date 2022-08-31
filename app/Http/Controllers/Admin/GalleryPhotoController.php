@@ -106,7 +106,7 @@ class GalleryPhotoController extends Controller
     public function show(Request $request)
     {
         $detail_gallery = DetailGalleryPhoto::where('gallery_photo_id', $request->id)->get();
-        if (!$role) {
+        if (!$detail_gallery) {
             return response()->json(['error' => 'Data not found'], 404);
         }
         return response()->json(['data' => $detail_gallery], 200);
