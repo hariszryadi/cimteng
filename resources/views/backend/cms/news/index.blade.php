@@ -172,7 +172,8 @@
                         swal('Sukses!', resp.message, 'success');
                     },
                     error: function (resp) {
-                        swal('Error!', resp.message, 'error');
+                        $('.datatable-basic').DataTable().ajax.reload();
+                        swal('Error!', resp.statusText, 'error');
                     }
                 })
             })

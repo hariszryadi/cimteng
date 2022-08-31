@@ -31,178 +31,180 @@
                         </a>
                     </li>
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(1)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(2)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(3)->first()->read_right == true) --}}
+                    @if (auth()->user()->can('read banner') ||
+                        auth()->user()->can('read news')||
+                        auth()->user()->can('read video') ||
+                        auth()->user()->can('read greeting'))
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-cube3"></i>
                                 <span>CMS</span></a>
                             <ul>
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(1)->first()->read_right == true) --}}
+                                @can('read banner')
                                     <li class="nav-item {{ request()->is('admin/cms/banner/*') ? 'active' : '' }}">
                                         <a href="{{ route('admin.cms.banner.index') }}">Banner</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(2)->first()->read_right == true) --}}
+                                @can('read news')
                                     <li class="nav-item {{ request()->is('admin/cms/news/*') ? 'active' : '' }}">
                                         <a href="{{ route('admin.cms.news.index') }}">Berita</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(3)->first()->read_right == true) --}}
+                                @can('read video')
                                     <li class="nav-item {{ request()->is('admin/cms/video/*') ? 'active' : '' }}">
                                         <a href="{{ route('admin.cms.video.index') }}">Video</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                <li class="nav-item {{ request()->is('admin/cms/greeting/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.cms.greeting.index') }}">Sambutan Camat</a>
-                                </li>
+                                @can('read greeting')
+                                    <li class="nav-item {{ request()->is('admin/cms/greeting/*') ? 'active' : '' }}">
+                                        <a href="{{ route('admin.cms.greeting.index') }}">Sambutan Camat</a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->read_right == true) --}}
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stack"></i>
-                                <span>Master</span></a>
-                            <ul>
-                                <li class="nav-item {{ request()->is('admin/master/type-potency/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.master.typePotency.index') }}">Jenis Usaha</a>
-                                </li>
+                    {{-- <li class="nav-item nav-item-submenu">
+                        <a href="#" class="nav-link"><i class="icon-stack"></i>
+                            <span>Master</span></a>
+                        <ul>
+                            @can('update', $post)
+                                
+                            @endcan
+                            <li class="nav-item {{ request()->is('admin/master/type-potency/*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.master.typePotency.index') }}">Jenis Usaha</a>
+                            </li>
 
-                            </ul>
-                        </li>
-                    {{-- @endif --}}
+                        </ul>
+                    </li> --}}
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
+                    @if (auth()->user()->can('read lakip') ||
+                        auth()->user()->can('read district monograph') ||
+                        auth()->user()->can('read vision mission') ||
+                        auth()->user()->can('read organizational structure') ||
+                        auth()->user()->can('read district employee') ||
+                        auth()->user()->can('read gallery photo'))
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack-text"></i>
                                 <span>Kecamatan</span></a>
                             <ul>
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(4)->first()->read_right == true) --}}
+                                @can('read lakip')
                                     <li class="nav-item {{ request()->is('admin/district/lakip/*') ? 'active' : ''}} ">
                                         <a href="{{ route('admin.district.lakip.index') }}">Data Lakip</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                <li class="nav-item {{ request()->is('admin/district/monograph/*') ? 'active' : ''}} ">
-                                    <a href="{{ route('admin.district.monograph.index') }}">Monografi</a>
-                                </li>
+                                @can('read district monograph')
+                                    <li class="nav-item {{ request()->is('admin/district/monograph/*') ? 'active' : ''}} ">
+                                        <a href="{{ route('admin.district.monograph.index') }}">Monografi</a>
+                                    </li>
+                                @endcan
 
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(5)->first()->read_right == true) --}}
+                                @can('read vision mission')
                                     <li class="nav-item {{ request()->is('admin/district/vision-mission/*') ? 'active' : ''}} ">
                                         <a href="{{ route('admin.district.visionMission.index') }}">Visi & Misi</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                <li class="nav-item {{ request()->is('admin/district/organizational-structure/*') ? 'active' : ''}} ">
-                                    <a href="{{ route('admin.district.organizationalStructure.index') }}">Struktur Organisasi</a>
-                                </li>
+                                @can('read organizational structure')
+                                    <li class="nav-item {{ request()->is('admin/district/organizational-structure/*') ? 'active' : ''}} ">
+                                        <a href="{{ route('admin.district.organizationalStructure.index') }}">Struktur Organisasi</a>
+                                    </li>
+                                @endcan
 
-                                <li class="nav-item {{ request()->is('admin/district/employee/*') ? 'active' : '' }} ">
-                                    <a href="{{ route('admin.district.employee.index') }}">Kepegawaian</a>
-                                </li>
+                                @can('read district employee')
+                                    <li class="nav-item {{ request()->is('admin/district/employee/*') ? 'active' : '' }} ">
+                                        <a href="{{ route('admin.district.employee.index') }}">Kepegawaian</a>
+                                    </li>
+                                @endcan
                                 
-                                <li class="nav-item {{ request()->is('admin/district/gallery-photo/*') ? 'active' : '' }} ">
-                                    <a href="{{ route('admin.district.galleryPhoto.index') }}">Galeri Foto</a>
-                                </li>
+                                @can('read gallery photo')
+                                    <li class="nav-item {{ request()->is('admin/district/gallery-photo/*') ? 'active' : '' }} ">
+                                        <a href="{{ route('admin.district.galleryPhoto.index') }}">Galeri Foto</a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(6)->first()->read_right == true) --}}
+                    @if (auth()->user()->can('read urban village monograph') ||
+                        auth()->user()->can('read urban village employee') ||
+                        auth()->user()->can('read urban village potency'))
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack-empty"></i>
                                 <span>Kelurahan</span></a>
                             <ul>
-                                <li class="nav-item {{ request()->is('admin/urban-village/monograph/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.urbanVillage.monograph.index') }}">Monografi</a>
-                                </li>
-                                <li class="nav-item {{request()->is('admin/urban-village/employee/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.urbanVillage.employee.index') }}">Kepegawaian</a>
-                                </li>
-                                <li class="nav-item {{request()->is('admin/urban-village/potency/*') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.urbanVillage.potency.index') }}">Potensi</a>
-                                </li>
+                                @can('read urban village monograph')
+                                    <li class="nav-item {{ request()->is('admin/urban-village/monograph/*') ? 'active' : '' }}">
+                                        <a href="{{ route('admin.urbanVillage.monograph.index') }}">Monografi</a>
+                                    </li>
+                                @endcan
+                                @can('read urban village employee')
+                                    <li class="nav-item {{request()->is('admin/urban-village/employee/*') ? 'active' : '' }}">
+                                        <a href="{{ route('admin.urbanVillage.employee.index') }}">Kepegawaian</a>
+                                    </li>
+                                @endcan
+                                @can('read urban village potency')
+                                    <li class="nav-item {{request()->is('admin/urban-village/potency/*') ? 'active' : '' }}">
+                                        <a href="{{ route('admin.urbanVillage.potency.index') }}">Potensi</a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    <li class="nav-item {{ request()->is('admin/service/*') ? 'active' : '' }} ">
-                        <a href="{{ route('admin.service.index') }}" class="nav-link"><i class="icon-user-check"></i>
-                            <span>Layanan</span>
-                        </a>
-                    </li>
+                    @can('read service')
+                        <li class="nav-item {{ request()->is('admin/service/*') ? 'active' : '' }} ">
+                            <a href="{{ route('admin.service.index') }}" class="nav-link"><i class="icon-user-check"></i>
+                                <span>Layanan</span>
+                            </a>
+                        </li>
+                    @endcan
                     
-                    <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }} ">
-                        <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-share3"></i>
-                            <span>Media Sosial</span>
-                        </a>
-                    </li>
+                    @can('read media social')
+                        <li class="nav-item {{ request()->is('admin/media-social/*') ? 'active' : '' }} ">
+                            <a href="{{ route('admin.mediaSocial.index') }}" class="nav-link"><i class="icon-share3"></i>
+                                <span>Media Sosial</span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    <li class="nav-item {{ request()->is('admin/iumk/*') ? 'active' : '' }} ">
+                    {{-- <li class="nav-item {{ request()->is('admin/iumk/*') ? 'active' : '' }} ">
                         <a href="{{ route('admin.iumk.index') }}" class="nav-link"><i class="icon-stack-check"></i>
                             <span>IUMK</span>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item {{ request()->is('admin/comment/*') ? 'active' : '' }} ">
-                        <a href="{{ route('admin.comment.index') }}" class="nav-link"><i class="icon-comments"></i>
-                            <span>Komentar & Saran</span>
-                        </a>
-                    </li>
+                    @can('read comment')
+                        <li class="nav-item {{ request()->is('admin/comment/*') ? 'active' : '' }} ">
+                            <a href="{{ route('admin.comment.index') }}" class="nav-link"><i class="icon-comments"></i>
+                                <span>Komentar & Saran</span>
+                            </a>
+                        </li>
+                    @endcan
 
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(8)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(9)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(10)->first()->read_right == true) --}}
+                    @if (auth()->user()->can('read role') ||
+                        auth()->user()->can('read user'))
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-user-lock"></i>
                                 <span>User Config</span></a>
                             <ul>
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->read_right == true) --}}
+                                @can('read role')
                                     <li class="nav-item {{ request()->is('admin/role/*') ? 'active' : '' }}">
                                         <a href="{{ route('admin.role.index') }}">Role</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
 
-                                {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(10)->first()->read_right == true) --}}
+                                @can('read user')
                                     <li class="nav-item {{ request()->is('admin/user-admin/*') ? 'active' : '' }}">
                                         <a href="{{ route('admin.userAdmin.index') }}">User Admin</a>
                                     </li>
-                                {{-- @endif --}}
+                                @endcan
                             </ul>
                         </li>
-                    {{-- @endif --}}
-
-                    {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(11)->first()->read_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(12)->first()->read_right == true)
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-download4"></i>
-                                <span>Report</span></a>
-                            <ul>
-                                @if (auth()->user()->roles()->first()->permission_role()->byId(11)->first()->read_right == true)
-                                    <li class="nav-item {{request()->is('admin/report/leave') ? 'active' : ''}}">
-                                        <a href="{{route('admin.report.leave')}}">Report Cuti/Izin</a>
-                                    </li>
-                                @endif
-
-                                @if (auth()->user()->roles()->first()->permission_role()->byId(12)->first()->read_right == true)
-                                    <li class="nav-item {{request()->is('admin/report/overtime') ? 'active' : ''}}">
-                                        <a href="{{route('admin.report.overtime')}}">Report Lembur</a>
-                                    </li>
-                                @endif
-
-                                @if (auth()->user()->roles()->first()->permission_role()->byId(13)->first()->read_right == true)
-                                    <li class="nav-item {{request()->is('admin/report/fee') ? 'active' : ''}}">
-                                        <a href="{{route('admin.report.fee')}}">Report Fee</a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </li>
-                    @endif --}}
+                    @endif
                 </ul>
             </div>
         </div>

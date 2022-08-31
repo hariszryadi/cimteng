@@ -17,6 +17,10 @@ class UrbanVillagePotencyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read urban village potency', ['only' => ['index']]);
+        $this->middleware('permission:create urban village potency', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit urban village potency', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete urban village potency', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,26 +29,30 @@ class UrbanVillagePotencyController extends Controller
             return Datatables::of(UrbanVillagePotency::with('urban_village', 'type_potency')->orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit urban village potency')) {
                         $x .= '<li>
                                     <a href="/admin/urban-village/potency/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete urban village potency')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('edit urban village potency') ||
+                        auth()->user()->can('delete urban village potency')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -81,6 +89,9 @@ class UrbanVillagePotencyController extends Controller
         $urban_village = UrbanVillage::orderBy('id')->get();
         $potency = UrbanVillagePotency::find($id);
         $type_potency = TypePotency::orderBy('id')->get();
+        if (!$potency) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('potency', 'urban_village', 'type_potency'));
     }
 

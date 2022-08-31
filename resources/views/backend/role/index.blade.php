@@ -19,7 +19,7 @@
         </div>
         <div class="panel-body">
 
-            @if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->create_right == true)
+            @can('create role')
                 <div class="form-group text-left">
                     <a href="{{route('admin.role.create')}}" id="tambah"
                         class="btn btn-primary">
@@ -27,7 +27,7 @@
                         Tambah
                     </a>
                 </div>
-            @endif
+            @endcan
 
             <table class="table datatable-basic table-hover table-bordered striped">
                 <thead>

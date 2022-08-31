@@ -120,8 +120,10 @@ Route::group(['prefix' => 'admin'], function () {
         });
 
         /** Monograph */
-        Route::get('/index', [DistrictMonographController::class, 'index'])->name('admin.district.monograph.index');
-        Route::post('/update', [DistrictMonographController::class, 'update'])->name('admin.district.monograph.update');
+        Route::group(['prefix' => 'monograph'], function () {
+            Route::get('/index', [DistrictMonographController::class, 'index'])->name('admin.district.monograph.index');
+            Route::post('/update', [DistrictMonographController::class, 'update'])->name('admin.district.monograph.update');
+        });
 
         /** Vision Mission */
         Route::group(['prefix' => 'vision-mission'], function () {

@@ -14,6 +14,8 @@ class DistrictMonographController extends Controller
 
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('permission:read district monograph', ['only' => ['index']]);
+        $this->middleware('permission:edit district monograph', ['only' => ['edit', 'update']]);
     }
 
     public function index()

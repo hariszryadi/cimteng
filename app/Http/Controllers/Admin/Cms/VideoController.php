@@ -17,6 +17,10 @@ class VideoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read video', ['only' => ['index']]);
+        $this->middleware('permission:create video', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit video', ['only' => ['edit', 'update', 'update_status']]);
+        $this->middleware('permission:delete video', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,26 +29,30 @@ class VideoController extends Controller
             return Datatables::of(Video::orderBy('id', 'desc')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit video')) {
                         $x .= '<li>
                                     <a href="/admin/cms/video/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete video')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-video="' . $data->video . '"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('edit video') ||
+                        auth()->user()->can('delete video')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -86,6 +94,9 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = Video::find($id);
+        if (!$video) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('video'));
     }
 

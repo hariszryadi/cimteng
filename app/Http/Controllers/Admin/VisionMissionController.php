@@ -15,6 +15,8 @@ class VisionMissionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read vision mission', ['only' => ['index']]);
+        $this->middleware('permission:edit vision mission', ['only' => ['edit', 'update']]);
     }
 
     public function index()
@@ -23,21 +25,20 @@ class VisionMissionController extends Controller
             return Datatables::of(VisionMission::get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
-                        $x .= '<li>
-                                    <a href="/admin/district/vision-mission/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
-                                </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    if (auth()->user()->can('edit vision mission')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            <li>
+                                                <a href="/admin/district/vision-mission/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -48,6 +49,9 @@ class VisionMissionController extends Controller
     public function edit($id)
     {
         $vm = VisionMission::find($id);
+        if (!$vm) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('vm'));
     }
 

@@ -14,6 +14,10 @@ class LakipController extends Controller
 
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('permission:read lakip', ['only' => ['index']]);
+        $this->middleware('permission:create lakip', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit lakip', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete lakip', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -22,19 +26,19 @@ class LakipController extends Controller
             return Datatables::of(Lakip::orderBy('id', 'desc')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->update_right == true) {
+                    if (auth()->user()->can('edit lakip')) {
                         $x .= '<li>
                                     <a href="/admin/district/lakip/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete lakip')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
+                    }
 
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->update_right == true ||
-                        // auth()->user()->roles()->first()->permission_role()->byId(9)->first()->delete_right == true) {
+                    if (auth()->user()->can('edit lakip') ||
+                        auth()->user()->can('delete lakip')) {
                         return '<ul class="icons-list">
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -45,7 +49,7 @@ class LakipController extends Controller
                                         </ul>
                                     </li>
                                 </ul>';
-                    // }
+                    }
                 })
                 ->make(true);
         }
@@ -76,6 +80,9 @@ class LakipController extends Controller
     public function edit($id)
     {
         $lakip = Lakip::find($id);
+        if (!$lakip) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('lakip'));
     }
 

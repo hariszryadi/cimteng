@@ -17,6 +17,10 @@ class GalleryPhotoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read gallery photo', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create gallery photo', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit gallery photo', ['only' => ['edit', 'update', 'update_status']]);
+        $this->middleware('permission:delete gallery photo', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,29 +29,36 @@ class GalleryPhotoController extends Controller
             return Datatables::of(GalleryPhoto::orderBy('id', 'desc')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    $x .= '<li>
-                            <a href="javascript:void(0)" id="show" data-id="'.$data->id.'"><i class="icon-search4 text-success"></i> Show</a>
-                        </li>';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('read gallery photo')) {
+                        $x .= '<li>
+                                <a href="javascript:void(0)" id="show" data-id="'.$data->id.'"><i class="icon-search4 text-success"></i> Show</a>
+                            </li>';
+                    }
+                    if (auth()->user()->can('edit gallery photo')) {
                         $x .= '<li>
                                     <a href="/admin/district/gallery-photo/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete gallery photo')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('read gallery photo') ||
+                        auth()->user()->can('edit gallery photo') ||
+                        auth()->user()->can('delete gallery photo')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->editColumn('created_at', function($data) {
                     $date = $data->updated_at;
@@ -95,12 +106,18 @@ class GalleryPhotoController extends Controller
     public function show(Request $request)
     {
         $detail_gallery = DetailGalleryPhoto::where('gallery_photo_id', $request->id)->get();
-        return response()->json(['data' => $detail_gallery]);
+        if (!$role) {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
+        return response()->json(['data' => $detail_gallery], 200);
     }
 
     public function edit($id)
     {
         $gallery = GalleryPhoto::find($id);
+        if (!$gallery) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('gallery'));
     }
 

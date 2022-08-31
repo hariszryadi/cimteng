@@ -16,6 +16,8 @@ class OrganizationalStructureController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read organizational structure', ['only' => ['index']]);
+        $this->middleware('permission:edit organizational structure', ['only' => ['edit', 'update']]);
     }
 
     /**
@@ -29,21 +31,20 @@ class OrganizationalStructureController extends Controller
             return Datatables::of(OrganizationalStructure::get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
-                        $x .= '<li>
-                                    <a href="/admin/district/organizational-structure/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
-                                </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    if (auth()->user()->can('edit organizational structure')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            <li>
+                                                <a href="/admin/district/organizational-structure/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -54,6 +55,9 @@ class OrganizationalStructureController extends Controller
     public function edit($id)
     {
         $org = OrganizationalStructure::find($id);
+        if (!$org) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('org'));
     }
 

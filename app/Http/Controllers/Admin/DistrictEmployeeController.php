@@ -16,6 +16,10 @@ class DistrictEmployeeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read district employee', ['only' => ['index']]);
+        $this->middleware('permission:create district employee', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit district employee', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete district employee', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -24,26 +28,30 @@ class DistrictEmployeeController extends Controller
             return Datatables::of(DistrictEmployee::orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit district employee')) {
                         $x .= '<li>
                                     <a href="/admin/district/employee/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete district employee')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-avatar="' . $data->avatar . '"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('edit district employee') ||
+                        auth()->user()->can('delete district employee')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -76,6 +84,9 @@ class DistrictEmployeeController extends Controller
     public function edit($id)
     {
         $employee = DistrictEmployee::find($id);
+        if (!$employee) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('employee'));
     }
 

@@ -17,6 +17,10 @@ class UrbanVillageEmployeeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read urban village employee', ['only' => ['index']]);
+        $this->middleware('permission:create urban village employee', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit urban village employee', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete urban village employee', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,26 +29,30 @@ class UrbanVillageEmployeeController extends Controller
             return Datatables::of(UrbanVillageEmployee::with('urban_village')->orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit urban village employee')) {
                         $x .= '<li>
                                     <a href="/admin/urban-village/employee/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete urban village employee')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-avatar="' . $data->avatar . '"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('edit urban village employee') ||
+                        auth()->user()->can('delete urban village employee')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                    }
                 })
                 ->make(true);
         }
@@ -84,6 +92,9 @@ class UrbanVillageEmployeeController extends Controller
     {
         $urban_village = UrbanVillage::orderBy('id')->get();
         $employee = UrbanVillageEmployee::find($id);
+        if (!$employee) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('employee', 'urban_village'));
     }
 

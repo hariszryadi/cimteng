@@ -17,6 +17,10 @@ class NewsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read news', ['only' => ['index']]);
+        $this->middleware('permission:create news', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit news', ['only' => ['edit', 'update', 'update_status']]);
+        $this->middleware('permission:delete news', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -25,26 +29,30 @@ class NewsController extends Controller
             return Datatables::of(News::orderBy('id', 'desc')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit news')) {
                         $x .= '<li>
                                     <a href="/admin/cms/news/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->delete_right == true) {
+                    }
+                    if (auth()->user()->can('delete news')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-image="' . $data->image . '"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
-                    // }
-                    return '<ul class="icons-list">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="icon-menu9"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right text-center">
-                                        '.$x.'
-                                    </ul>
-                                </li>
-                            </ul>';
+                    }
+
+                    if (auth()->user()->can('edit news') ||
+                        auth()->user()->can('delete news')) {
+                        return '<ul class="icons-list">
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right text-center">
+                                            '.$x.'
+                                        </ul>
+                                    </li>
+                                </ul>';
+                        }
                 })
                 ->make(true);
         }
@@ -82,6 +90,9 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
+        if (!$news) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('news'));
     }
 

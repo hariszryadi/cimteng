@@ -12,6 +12,8 @@ class MediaSocialController extends Controller
 
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('permission:read media social', ['only' => ['index']]);
+        $this->middleware('permission:update media social', ['only' => ['update']]);
     }
 
     public function index()

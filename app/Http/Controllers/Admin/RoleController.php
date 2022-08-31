@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\PermissionRole;
-use App\Models\Permission;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
 use DataTables;
 
 class RoleController extends Controller
@@ -15,6 +15,10 @@ class RoleController extends Controller
 
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('permission:read role', ['only' => ['index']]);
+        $this->middleware('permission:create role', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete role', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -23,19 +27,19 @@ class RoleController extends Controller
             return Datatables::of(Role::orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->update_right == true) {
+                    if (auth()->user()->can('edit role')) {
                         $x .= '<li>
                                     <a href="/admin/role/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
                     }
-                    if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->delete_right == true) {
+                    if (auth()->user()->can('delete role')) {
                         $x .= '<li>
                                     <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'"><i class="icon-bin text-danger"></i> Hapus</a>
                                 </li>';
                     }
 
-                    if (auth()->user()->roles()->first()->permission_role()->byId(9)->first()->update_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(9)->first()->delete_right == true) {
+                    if (auth()->user()->can('edit role') ||
+                        auth()->user()->can('delete role')) {
                         return '<ul class="icons-list">
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -56,7 +60,8 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view($this->_view.'form');
+        $permissions = Permission::orderBy('id')->get();
+        return view($this->_view.'form')->with(compact('permissions'));
     }
 
     public function store(Request $request)
@@ -65,30 +70,9 @@ class RoleController extends Controller
             'name' => 'required'
         ]);
 
-        $data = Role::create([
-            'name' => $request->name
-        ]);
-
-        $permissions = Permission::get();
-        foreach ($permissions as $permission) {
-            $permissionRole = new PermissionRole;
-
-            $permissionRole->permission_id = $permission->id;
-            $permissionRole->role_id = $data->id;
-            if ($permission->readable == true) {
-                $permissionRole->read_right = $request->get("readable_".$permission->id) != null ? true : false;
-            }
-            if ($permission->createable == true) {
-                $permissionRole->create_right = $request->get("createable_".$permission->id) != null ? true : false;
-            }
-            if ($permission->updateable == true) {
-                $permissionRole->update_right = $request->get("updateable_".$permission->id) != null ? true : false;
-            }
-            if ($permission->deleteable == true) {
-                $permissionRole->delete_right = $request->get("deleteable_".$permission->id) != null ? true : false;
-            }
-
-            $permissionRole->save();
+        $role = Role::create(['name' => $request->name]);
+        foreach ($request->permission as $key => $value) {
+            $role->givePermissionTo($value);
         }
 
         return redirect()->route('admin.role.index')->with('success', 'Success Message');
@@ -96,8 +80,12 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $role = Role::find($id);
-        return view($this->_view.'form')->with(compact('role'));
+        $role = Role::with('permissions')->find($id);
+        $permissions = Permission::orderBy('id')->get();
+        if (!$role) {
+            return abort(404);
+        }
+        return view($this->_view.'form')->with(compact('role', 'permissions'));
     }
 
     public function update(Request $request)
@@ -106,50 +94,10 @@ class RoleController extends Controller
             'name' => 'required'
         ]);
 
-        Role::where('id', $request->id)->update([
-            'name' => $request->name
-        ]);
-
-        $permissions = Permission::get();
-        foreach ($permissions as $permission) {
-            $data = [];
-            $permissionRole = PermissionRole::where('role_id', $request->id)->where('permission_id', $permission->id);
-
-            if ($permission->readable == true) {
-                if ($request->get("readable_".$permission->id) != null) {
-                    $data['read_right'] = true;
-                } else {
-                    $data['read_right'] = false;
-                }
-            }
-
-            if ($permission->createable == true) {
-                if ($request->get("createable_".$permission->id) != null) {
-                    $data['create_right'] = true;
-                } else {
-                    $data['create_right'] = false;
-                }
-            }
-
-            if ($permission->updateable == true) {
-                if ($request->get("updateable_".$permission->id) != null) {
-                    $data['update_right'] = true;
-                } else {
-                    $data['update_right'] = false;
-                }
-            }
-
-            if ($permission->deleteable == true) {
-                if ($request->get("deleteable_".$permission->id) != null) {
-                    $data['delete_right'] = true;
-                } else {
-                    $data['delete_right'] = false;
-                }
-            }
-
-
-            $permissionRole->update($data);
-        }
+        $role = Role::find($request->id);
+        $role->name = $request->name;
+        $role->syncPermissions($request->permission);
+        $role->update();
 
         return redirect()->route('admin.role.index')->with('success', 'Success Message');
     }
@@ -160,45 +108,5 @@ class RoleController extends Controller
         $role->delete();
 
         return response()->json(['success' => 'Delete Data Successfully']);
-    }
-
-    public function dataTablePermission(Request $request)
-    {
-        if ($request->id == null) {
-            $query = Permission::select(
-                'permissions.id as id',
-                'permissions.code',
-                'permissions.name as name',
-                'permissions.readable',
-                'permissions.createable',
-                'permissions.updateable',
-                'permissions.deleteable'
-            )
-            ->get();
-
-            return response()->json($query);
-        } else {
-            $query = Permission::select(
-                        'permissions.id as id',
-                        'permissions.code',
-                        'permissions.name as name',
-                        'permissions.readable',
-                        'permissions.createable',
-                        'permissions.updateable',
-                        'permissions.deleteable',
-                        'permission_role.read_right',
-                        'permission_role.create_right',
-                        'permission_role.update_right',
-                        'permission_role.delete_right',
-                        'roles.id as role_id',
-                        'roles.name as role_name'
-                    )
-                    ->join('permission_role', 'permissions.id', '=', 'permission_role.permission_id')
-                    ->join('roles', 'permission_role.role_id', '=', 'roles.id')
-                    ->where('roles.id', '=', $request->id)
-                    ->get();
-
-            return response()->json($query);
-        }
     }
 }

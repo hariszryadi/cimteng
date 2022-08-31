@@ -21,15 +21,15 @@
         </div>
         <div class="panel-body">
             
-            {{-- @if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->create_right == true) --}}
+            @can('create urban village employee')
                 <div class="form-group text-left">
                     <a href="{{route('admin.urbanVillage.employee.create')}}" id="tambah" 
                         class="btn btn-primary">
                         <i class="icon-file-plus"></i>
                         Tambah
                     </a>
-                </div>       
-            {{-- @endif --}}
+                </div>
+            @endcan
             
             <table class="table datatable-basic table-hover table-bordered striped">
                 <thead>

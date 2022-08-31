@@ -14,6 +14,8 @@ class UrbanVillageMonographController extends Controller
 
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('permission:read urban village monograph', ['only' => ['index']]);
+        $this->middleware('permission:edit urban village monograph', ['only' => ['edit', 'update']]);
     }
 
     public function index()
@@ -22,11 +24,11 @@ class UrbanVillageMonographController extends Controller
             return Datatables::of(UrbanVillageMonograph::with('urban_village')->orderBy('id')->get())
                 ->addColumn('action', function($data){
                     $x = '';
-                    // if (auth()->user()->roles()->first()->permission_role()->byId(7)->first()->update_right == true) {
+                    if (auth()->user()->can('edit urban village monograph')) {
                         $x .= '<li>
                                     <a href="/admin/urban-village/monograph/'.$data->id .'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                                 </li>';
-                    // }
+                    }
                     return '<ul class="icons-list">
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -54,6 +56,9 @@ class UrbanVillageMonographController extends Controller
     public function edit($id)
     {
         $monograph = UrbanVillageMonograph::find($id);
+        if (!$monograph) {
+            return abort(404);
+        }
         return view($this->_view.'form')->with(compact('monograph'));
     }
 

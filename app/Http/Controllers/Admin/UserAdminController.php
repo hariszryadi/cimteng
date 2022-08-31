@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Models\PermissionRole;
 use App\Models\User;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use DataTables;
 use File;
 
@@ -20,12 +19,16 @@ class UserAdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:read user', ['only' => ['index']]);
+        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete user', ['only' => ['destroy']]);
     }
 
     public function index()
     {
         if (request()->ajax()) {
-            return Datatables::of(User::orderBy('id')->get())
+            return Datatables::of(User::with('roles')->orderBy('id')->get())
                 ->addColumn('action', function($data){
                     if ($data->email == 'superadmin@cimahitengah.id') {
                         $this->disabled = 'disabled';
@@ -36,19 +39,19 @@ class UserAdminController extends Controller
                     }
 
                     $x = '';
-                    if (auth()->user()->roles()->first()->permission_role()->byId(10)->first()->update_right == true) {
+                    if (auth()->user()->can('edit user')) {
                         $x .= '<li>
                                 <a href="/admin/user-admin/'.$data->id.'/edit"><i class="icon-pencil5 text-primary"></i> Edit</a>
                             </li>';
                     }
-                    if (auth()->user()->roles()->first()->permission_role()->byId(10)->first()->delete_right == true) {
+                    if (auth()->user()->can('delete user')) {
                         $x .= '<li class="'.$this->disabled.'">
                             <a href="javascript:void(0)" id="delete" data-id="'.$data->id.'" data-image="'.$data->avatar.'" '.$this->disabled.'><i class="icon-bin '.$this->trash.'"></i> Hapus</a>
                         </li>';
                     }
 
-                    if (auth()->user()->roles()->first()->permission_role()->byId(10)->first()->update_right == true ||
-                        auth()->user()->roles()->first()->permission_role()->byId(10)->first()->delete_right == true) {
+                    if (auth()->user()->can('edit user') ||
+                        auth()->user()->can('delete user')) {
                         return '<ul class="icons-list">
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -77,9 +80,10 @@ class UserAdminController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required'
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+            'role' => 'required'
         ]);
 
         $path = null;
@@ -87,15 +91,15 @@ class UserAdminController extends Controller
             $path = $request->file('avatar')->store('avatar', ['disk' => 'public']);
         }
 
-        $data = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'avatar' => $path
         ]);
 
-        $admin = User::find($data->id);
-        $admin->roles()->attach($request->role_id);
+        $role = Role::find($request->role);
+        $user->assignRole($role);
 
         return redirect()->route('admin.userAdmin.index')->with('success', 'Success Message');
     }
@@ -104,20 +108,24 @@ class UserAdminController extends Controller
     {
         $userAdmin = User::with('roles')->find($id);
         $role = Role::orderBy('id')->get();
+        if (!$userAdmin) {
+            return abort(404);
+        }
         return view($this->_view.'edit')->with(compact('userAdmin', 'role'));
     }
 
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+        ]);
+
         $data = [];
         $email = $request->email;
         $password = $request->password;
         $avatar = $request->file('avatar');
         $userAdmin = User::where('id', $request->id);
-
-        if ($email != '') {
-            $data['email'] = $email;
-        }
 
         if ($password != '') {
             $data['password'] = Hash::make($password);
@@ -139,8 +147,8 @@ class UserAdminController extends Controller
 
         $userAdmin->update($data);
 
-        $admin = User::find($request->id);
-        $admin->roles()->sync($request->role_id);
+        $role = Role::find($request->role);
+        $user->syncRoles($role);
 
         return redirect()->route('admin.userAdmin.index')->with('success', 'Success Message');
     }
