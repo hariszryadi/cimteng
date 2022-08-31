@@ -33,13 +33,13 @@ class HomeController extends Controller
         $unique_ip = true;
         $visitors = Visitor::all();
         foreach($visitors as $visitor){
-            if($visitor->ip == request()->ip() && $visitor->visit_date == date('Y-m-d')){
+            if($visitor->ip == $this->getUserIpAddress() && $visitor->visit_date == date('Y-m-d')){
                 $unique_ip = false;
             }
         }
         if($unique_ip == true){
             $visitor = Visitor::create([
-                'ip' => request()->ip(),
+                'ip' => $this->getUserIpAddress(),
                 'visit_date' => date('Y-m-d')
             ]);
         }
@@ -48,6 +48,28 @@ class HomeController extends Controller
         view()->share('medsos', $medsos);
         view()->share('urban_village', $urban_village);
     }
+
+    /**
+     * Get IP Address client
+     */
+    private function getUserIpAddress(){
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';    
+        return $ipaddress;
+     }
 
     /**
      * Show the application dashboard.
