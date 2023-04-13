@@ -70,6 +70,7 @@ class UrbanVillagePotencyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'type_potency_id' => 'required',
             'urban_village_id' => 'required'
         ]);
 

@@ -67,7 +67,8 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'permission.0' => 'required'
         ]);
 
         $role = Role::create(['name' => $request->name]);
@@ -91,7 +92,8 @@ class RoleController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'permission.0' => 'required'
         ]);
 
         $role = Role::find($request->id);

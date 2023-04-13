@@ -51,6 +51,9 @@
                                 <option value="{{ $item->id }}" {{ isset($potency) ? $potency->type_potency_id == $item->id ? 'selected' : '' : '' }}>{{ $item->name }}</option>
                             @endforeach
                         </select>
+                        @if ($errors->has('type_potency_id'))
+                            <span class="help-block text-danger">{{ $errors->first('type_potency_id') }}</span>
+                        @endif
                     </div>
                 </div>
 
@@ -88,7 +91,13 @@
             var config = {
                 form : 'form',
                 validate : {
-                    'name' : {
+                    'location' : {
+                        validation : 'required',
+                    },
+                    'rt' : {
+                        validation : 'required',
+                    },
+                    'rw' : {
                         validation : 'required',
                     }
                 }

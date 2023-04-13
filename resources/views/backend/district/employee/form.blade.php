@@ -88,6 +88,18 @@
                 validate : {
                     'name' : {
                         validation : 'required',
+                    },
+                    'position' : {
+                        validation : 'required',
+                    },
+                    'rank' : {
+                        validation : 'required',
+                    },
+                    'education' : {
+                        validation : 'required',
+                    },
+                    'avatar' : {
+                        validation : 'required',
                     }
                 }
             };

@@ -77,7 +77,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2">Role</label>
                     <div class="col-lg-10">
-                        <select class="form-control" name="role_id" id="">
+                        <select class="form-control" name="role" id="">
                             <option value="null" selected disabled>Pilih Role</option>
                             @foreach ($role as $item)
                                 <option value="{{$item->id}}" {{$userAdmin->roles->first()->id == $item->id ? 'selected' : ''}}>{{$item->name}}</option>

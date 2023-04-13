@@ -122,7 +122,6 @@ class UserAdminController extends Controller
         ]);
 
         $data = [];
-        $email = $request->email;
         $password = $request->password;
         $avatar = $request->file('avatar');
         $userAdmin = User::where('id', $request->id);
@@ -140,14 +139,17 @@ class UserAdminController extends Controller
         }
 
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'email' => 'required'
         ]);
 
         $data['name'] = $request->name;
+        $data['email'] = $request->email;
 
         $userAdmin->update($data);
 
         $role = Role::find($request->role);
+        $user = User::find($request->id);
         $user->syncRoles($role);
 
         return redirect()->route('admin.userAdmin.index')->with('success', 'Success Message');

@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2">Nama Role</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nama Role" value="{{ isset($role) ? "$role->name" : '' }}">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nama Role" value="{{ isset($role) ? "$role->name" : old('name') }}">
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -56,6 +56,9 @@
                                 <label class="form-check-label" for="{{ $item->name }}">{{ $item->name }}</label>
                             </div>
                         @endforeach --}}
+                        @if ($errors->has('permission.0'))
+                            <span class="help-block text-danger">{{ $errors->first('permission.0') }}</span>
+                        @endif
                         <table class="table table-hover table-bordered striped">
                             <thead>
                                 <tr class="bg-teal-400">

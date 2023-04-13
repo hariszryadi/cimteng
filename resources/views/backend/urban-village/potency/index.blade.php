@@ -19,7 +19,7 @@
         </div>
         <div class="panel-body">
             
-            @can('create urban village potency', $post)
+            @can('create urban village potency')
                 <div class="form-group text-left">
                     <a href="{{route('admin.urbanVillage.potency.create')}}" id="tambah" 
                         class="btn btn-primary">
