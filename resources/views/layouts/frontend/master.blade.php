@@ -56,9 +56,9 @@
 	</style>
 </head>
 <body>
-<div class="loader">
+{{-- <div class="loader">
     <div></div>
-</div>
+</div> --}}
 
 {{-- <div class="content-wrapper"> --}}
     <!-- ========== Header Start ========== -->
@@ -105,8 +105,15 @@
 <!-- Custom js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script>
-    $(window).on('load', function(){
-        $('.loader').fadeOut(1000);
+    // $(window).on('load', function(){
+    //     $('.loader').fadeOut(1000);
+    // })
+    $('#navbar-menu').on('show.bs.collapse', function () {
+        $('.navbar').removeAttr('style');
+    })
+    
+    $('#navbar-menu').on('hide.bs.collapse', function () {
+        $('.navbar').attr('style', 'background-color:rgba(239, 230, 230, 0.5)');
     })
 </script>
 
