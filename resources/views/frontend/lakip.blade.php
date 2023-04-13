@@ -36,7 +36,7 @@
 		
 		<div class="row">
 			<div class="col-md-6">
-				<img class="" src="{{ asset('images/lakip.svg') }}" alt="lakip" />
+				<img class="img-center" src="{{ asset('images/lakip.svg') }}" alt="lakip" />
 			</div>
 			<div class="col-md-6">
 				<div class="row">

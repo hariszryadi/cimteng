@@ -79,7 +79,7 @@
 		<div class="row">
 			<div class="col-md-6">
                 <div class="contact-form-box" style="background-color: #fff;">
-                    <img class="" src="{{ asset('images/komentar.svg') }}" alt="komentar & saran" style="padding-top: 10px;"/>
+                    <img class="img-center" src="{{ asset('images/komentar.svg') }}" alt="komentar & saran" style="padding-top: 10px;"/>
                 </div>
 			</div>
 			<div class="col-md-6">

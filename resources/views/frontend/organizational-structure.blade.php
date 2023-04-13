@@ -31,7 +31,7 @@
 		
 		<div class="row">
 			<div class="col-md-6">
-				<img class="" src="{{ asset('images/organisasi.svg') }}" alt="struktur organisasi" />
+				<img class="img-center" src="{{ asset('images/organisasi.svg') }}" alt="struktur organisasi" />
 			</div>
 			<div class="col-md-6">
 				<embed src= "{{ asset('storage/'.$org[0]->file.'#navpanes=0&scrollbar=0') }}" width= "100%" height= "375">

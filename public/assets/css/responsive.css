@@ -1,3 +1,15 @@
+@media screen and (min-width: 1900px){
+    body {
+        font-size: 16px;
+    }
+    .container {
+        width: 1770px;
+    }
+    .img-download {
+        width: 300px;
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .mb-lg-0{
         margin-bottom: 0px;
@@ -507,5 +519,11 @@
 	.call-to-intro .btn-large{
 		display:inline-block;
 	}
-	
+}
+
+@media only screen and (min-width: 320px) {
+    .footer-wrap {
+        margin: 0 20px;
+        padding: 0 20px;
+    }
 }

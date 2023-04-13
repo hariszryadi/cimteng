@@ -47,6 +47,13 @@
 	<!-- <link href="css/colors/red.css" rel="stylesheet"> -->
 	<!-- <link href="css/colors/teal.css" rel="stylesheet"> -->
     <!--	Comment out the CSS file you want to use	-->
+    <style>
+		.img-center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
 </head>
 <body>
 <div class="loader">

@@ -60,7 +60,7 @@
             @foreach ($gallery as $item)
                 <div class="col-sm-6" style="margin-bottom: 24px;">
                     <div class="col-sm-4">
-                        <img src="{{ asset('images/galeri.svg') }}" class="img-responsive" alt="Galeri Foto">
+                        <img src="{{ asset('images/galeri.svg') }}" class="img-responsive img-center" alt="Galeri Foto">
                     </div>
                     <div class="col-sm-8">
                         <div class="extra-small-text">

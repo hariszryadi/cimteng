@@ -45,11 +45,11 @@
                 <div class="row" style="padding-top: 12px;">
                     <div class="col-xs-6">
                         {{-- <h6 class="text-success">Dapatkan di Play Store</h6> --}}
-                        <img class="image-responsive" src="{{ asset('images/google-play.svg') }}" alt="google-play" style="cursor: pointer;" width="200"/>
+                        <img class="image-responsive img-download" src="{{ asset('images/google-play.svg') }}" alt="google-play" style="cursor: pointer;" width="200"/>
                     </div>
                     <div class="col-xs-6">
                         {{-- <h6 class="text-danger">Segera Hadir di App Store</h6> --}}
-                        <img class="image-responsive" src="{{ asset('images/app-store.svg') }}" alt="app-store" style="cursor: not-allowed;" width="200"/>
+                        <img class="image-responsive img-download" src="{{ asset('images/app-store.svg') }}" alt="app-store" style="cursor: not-allowed;" width="200"/>
                     </div>
                 </div>
             </div>
